@@ -1,0 +1,541 @@
+/* 基本樣式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 頁面背景與字體 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fdf8; /* 非常淡的綠色背景 */
+  color: #333; /* 通用文字顏色 */
+  line-height: 1.6;
+}
+
+/* 頁首樣式 */
+header {
+  background-color: #9fc8b1; /* 淡綠色 */
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: background 0.3s;
+}
+
+header nav a:hover {
+  background-color: #86c99d; /* 深淡綠色 */
+  border-radius: 5px;
+}
+
+/* 按鈕查詢區樣式 */
+.query-section {
+  background-color: #e6f7f9; /* 淡藍綠色背景 */
+  padding: 2rem;
+  text-align: center;
+}
+
+.query-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* 查詢按鈕基本樣式 */
+.query-btn {
+  background: linear-gradient(135deg, #b3e5d6, #b3d8f5); /* 淡綠到淡藍的漸層 */
+  color: #386641; /* 深綠色字體 */
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.query-btn:hover {
+  background: linear-gradient(135deg, #a3d5c6, #a3c8e5); /* 深一點的漸層 */
+  transform: scale(1.05);
+}
+
+/* 下拉選單容器 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* 下拉選單的隱藏內容 */
+.dropdown-menu {
+  display: none; /* 默認隱藏 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  z-index: 1000;
+  width: 200px;
+}
+
+/* 顯示下拉選單 */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* 下拉選單項目樣式 */
+.dropdown-item {
+  background: none;
+  color: #386641; /* 深綠色字體 */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* 淡灰色背景 */
+}
+
+/* 主要內容樣式 */
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.content {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+  color: #386641; /* 深綠色標題 */
+  margin-bottom: 1rem;
+}
+
+.content ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.content ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* 勾選區樣式 */
+.agreement-form {
+  margin-top: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-container label {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 按鈕樣式 */
+#submit-btn {
+  background-color: #d6d6d6; /* 禁用時的灰色 */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: not-allowed; /* 初始為禁用 */
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, cursor 0.3s;
+}
+
+#submit-btn:enabled {
+  background-color: #4caf50; /* 綠色 */
+  cursor: pointer;
+}
+
+#submit-btn:enabled:hover {
+  background-color: #45a049; /* 更深的綠色 */
+}
+
+/* 信箱驗證內容樣式 */
+.verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.verification-form label {
+  font-weight: bold;
+  color: #386641; /* 深綠色 */
+}
+
+.verification-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.verification-form .submit-btn {
+  background-color: #4caf50; /* 綠色 */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.verification-form .submit-btn:hover {
+  background-color: #45a049; /* 更深的綠色 */
+}
+
+/* 頁尾樣式 */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}
+/* 公文查詢表單樣式 */
+.query-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.query-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.query-form label {
+  font-weight: bold;
+  color: #386641; /* 深綠色標籤 */
+}
+
+.query-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.query-form input[type="date"] {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.query-form .submit-btn {
+  background-color: #4caf50; /* 綠色 */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.query-form .submit-btn:hover {
+  background-color: #45a049; /* 更深的綠色 */
+}
+
+.query-form .reset-btn {
+  background-color: #d9534f; /* 紅色 */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.query-form .reset-btn:hover {
+  background-color: #c9302c; /* 深紅色 */
+}
+/* 表格樣式 */
+table {
+  width: 100%; /* 表格寬度占滿父容器 */
+  border-collapse: collapse; /* 去除表格內邊距 */
+  margin-top: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #ccc; /* 表格邊框 */
+  padding: 0.75rem; /* 單元格內部間距 */
+  text-align: left; /* 文字靠左對齊 */
+}
+
+table th {
+  background-color: #f2f2f2; /* 表頭背景色 */
+  font-weight: bold;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* 奇數行的背景色 */
+}
+
+table tbody tr:hover {
+  background-color: #e6f7f9; /* 懸停行的背景色 */
+}
+
+table caption {
+  margin-bottom: 0.5rem; /* 表格標題與表格間距 */
+  font-weight: bold;
+  text-align: left;
+  color: #333;
+}
+
+/* 響應式處理 */
+@media (max-width: 768px) {
+  table th, table td {
+      padding: 0.5rem; /* 縮小單元格內部間距 */
+  }
+}
+.query-btn {
+  background: linear-gradient(135deg, #b3e5d6, #b3d8f5); /* 淡綠到淡藍漸層 */
+  color: #386641; /* 深綠色字體 */
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none; /* 移除超連結下劃線 */
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.query-btn:hover {
+  background: linear-gradient(135deg, #a3d5c6, #a3c8e5); /* 懸停時的漸層 */
+  transform: scale(1.05); /* 懸停放大效果 */
+}
+/* 案件查詢表單樣式（更新驗證碼區域） */
+.query-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.query-form h2 {
+  color: #386641; /* 深綠色標題 */
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.query-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.query-form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.query-form input[type="text"],
+.query-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.query-form input[type="text"]:focus,
+.query-form input[type="password"]:focus {
+  border-color: #4caf50; /* 綠色聚焦效果 */
+  outline: none;
+}
+
+/* 驗證碼區域 */
+.query-form .captcha-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 圖片與輸入框的間距 */
+}
+
+.query-form .captcha-container input[type="text"] {
+  flex: 1; /* 輸入框自適應剩餘空間 */
+}
+
+.query-form img {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100px; /* 固定寬度 */
+  height: 40px; /* 固定高度 */
+}
+
+/* 按鈕樣式 */
+.query-form button {
+  background-color: #4caf50; /* 綠色按鈕 */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.query-form button:hover {
+  background-color: #45a049; /* 深綠色懸停效果 */
+  transform: scale(1.05);
+}
+
+.query-form button:active {
+  background-color: #3e8e41; /* 按下效果 */
+  transform: scale(0.98);
+}
+
+.query-form p {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.query-form p a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.query-form p a:hover {
+  color: #45a049; /* 深綠色懸停效果 */
+}
+
+/* 響應式處理 */
+@media (max-width: 768px) {
+  .query-form {
+      padding: 1.5rem;
+  }
+
+  .query-form h2 {
+      font-size: 1.25rem;
+  }
+
+  .query-form img {
+      width: 80px; /* 減小寬度 */
+      height: 30px; /* 減小高度 */
+  }
+
+  .query-form button {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+  }
+}
+/* 搜尋框樣式 */
+.search-bar {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #4caf50; /* 綠色聚焦效果 */
+  outline: none;
+}
+
+/* FAQ 項目樣式 */
+.faq-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.faq-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.faq-item h3 {
+  margin-bottom: 0.5rem;
+  color: #386641; /* 深綠色標題 */
+}
+
+.faq-item p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* FAQ 項目懸停效果 */
+.faq-item:hover {
+  background-color: #e6f7f1;
+}
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>縣長信箱</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>
+        <h1>1999 為民服務系統</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="#">最新消息</a></li>
+                <li><a href="#">服務項目</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主要內容 -->
+    <main>
+        <section class="content">
+            <h2>縣長信箱</h2>
+            <p>親愛的縣民，您好：</p>
+            <p>歡迎使用屏東縣政府1999為民服務系統，請您先詳讀下列使用說明後再登錄案件：</p>
+            <ul>
+                <li>登錄案件時請載明具體事項、姓名及聯絡方式；如未具名及聯絡方式且無具體事由，本府得逕為不受理。</li>
+                <li>陳情案件以真實案件為限，與縣政無關之建議，情緒批評、惡意攻擊、謾罵等，恕不服務。</li>
+                <li>經查證所留姓名或住址、聯絡電話、電子郵件位址屬偽冒、匿名虛報不實者，本府得不予處理。</li>
+                <li>如未填具真實姓名或相關資料，因而引發之法律責任，當事人應負全責。</li>
+                <li>您所填寫的資料，將依據個人資料保護法及相關規定蒐集、處理及合理利用，請您確認並詳閱系統首頁「隱私權及資訊安全政策」。</li>
+                <li>案件送出後，為確認您的E-mail無登錄錯誤、未遭他人冒用及後續可收到回復，請盡速至個人信箱點選確認信。</li>
+                <li>您所填寫的資料，依據個人資料保護法及相關規定，不對外公開，僅供承辦單位業務上聯繫，回復及本府分析使用；另主旨、內容等非個人資料欄位，後續提供縣政分析，作為施政參考。</li>
+            </ul>
+
+            <!-- 勾選並同意區 -->
+            <form action="email_verification.html" method="get" class="agreement-form">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="agreement" name="agreement">
+                    <label for="agreement">我已了解並同意上述條款。</label>
+                </div>
+                <button type="submit" id="submit-btn" disabled>開始登錄案件</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2025 屏東縣政府. 保留所有權利。</p>
+        <p>地址：900219 屏東縣屏東市自由路527號</p>
+        <p>電話：08-732-0415</p>
+        <p>辦公時間：週一至週五 08:00~12:00、13:00~17:00，彈性上下班時間：08:00-08:30 及 17:00-17:30
+            1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥 08-732-0415，服務時間每日 08:00~22:00</p>
+    </footer>
+
+    <script>
+        // 啟用按鈕的功能
+        const checkbox = document.getElementById('agreement');
+        const submitButton = document.getElementById('submit-btn');
+
+        checkbox.addEventListener('change', () => {
+            submitButton.disabled = !checkbox.checked;
+        });
+    </script>
+</body>
+</html>

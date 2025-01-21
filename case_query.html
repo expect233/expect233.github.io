@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件查詢</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>案件查詢</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="mayor_mailbox.html">縣長信箱</a></li>
+                <li><a href="document_query.html">公文查詢</a></li>
+                <li><a href="1999_service.html">1999服務時間與費率說明</a></li>
+                <li><a href="1999_case_process.html">1999案件流程與規範</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="query-form">
+            <h2>依案件編號查詢</h2>
+            <form action="process_query.php" method="post">
+                <label for="case_number">案件編號：</label>
+                <input type="text" id="case_number" name="case_number" required>
+                
+                <label for="case_password">案件密碼：</label>
+                <input type="password" id="case_password" name="case_password" required>
+                
+                <label for="captcha">驗證碼：</label>
+                <div class="captcha-container">
+                    <input type="text" id="captcha" name="captcha" required>
+                    <img src="captcha_image.php" alt="驗證碼圖片">
+                </div>
+                
+                <button type="submit">送出查詢</button>
+            </form>
+            <p><a href="forgot_password.html">忘記案件密碼</a></p>
+        </section>
+        
+    </main>
+    <footer>
+        <p>© 2025 屏東縣政府. 保留所有權利。</p>
+        <p>地址：900219 屏東縣屏東市自由路527號</p>
+        <p>電話：08-732-0415</p>
+        <p>辦公時間：週一至週五 08:00~12:00、13:00~17:00，彈性上下班時間：08:00-08:30 及 17:00-17:30
+            1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥 08-732-0415，服務時間每日 08:00~22:00</p>
+    </footer>
+</body>
+</html>
