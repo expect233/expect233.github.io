@@ -14,3 +14,30 @@ function filterFAQs() {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const emailInput = document.getElementById('email');
+    const sendCodeBtn = document.getElementById('send-code-btn');
+    const verificationCodeInput = document.getElementById('verification-code');
+    const confirmBtn = document.getElementById('confirm-btn');
+
+    // 發送驗證碼按鈕點擊事件
+    sendCodeBtn.addEventListener('click', () => {
+        if (emailInput.checkValidity()) {
+            alert('驗證碼已發送至您的信箱，請查收。');
+            // 啟用驗證碼輸入框
+            verificationCodeInput.disabled = false;
+            verificationCodeInput.focus();
+        } else {
+            alert('請先輸入有效的電子信箱。');
+        }
+    });
+
+    // 驗證碼輸入框輸入事件
+    verificationCodeInput.addEventListener('input', () => {
+        if (verificationCodeInput.value.trim().length > 0) {
+            confirmBtn.disabled = false; // 啟用確定按鈕
+        } else {
+            confirmBtn.disabled = true; // 禁用確定按鈕
+        }
+    });
+});

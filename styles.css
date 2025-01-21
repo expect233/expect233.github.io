@@ -15,12 +15,111 @@ body {
 
 /* 頁首樣式 */
 header {
-  background-color: #9fc8b1; /* 淡綠色 */
+  background-color: #9fc8b1; /* 主背景色 */
   color: white;
-  padding: 1.5rem 0;
+  padding: 4rem 0; /* 增加內邊距 */
   text-align: center;
+  position: relative;
+  overflow: hidden; /* 隱藏超出區域的裝飾圖形 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* 彩色背景圖案 */
+  background-image: 
+      radial-gradient(circle at 15% 30%, rgba(244, 162, 97, 0.7) 30%, transparent 70%),
+      radial-gradient(circle at 85% 25%, rgba(233, 196, 106, 0.6) 30%, transparent 70%),
+      radial-gradient(circle at 50% 75%, rgba(42, 157, 143, 0.6) 20%, transparent 80%);
+  background-repeat: no-repeat;
+  background-size: 500px 500px, 400px 400px, 600px 600px;
+  background-position: -50px 30%, calc(100% + 50px) 25%, 50% 75%;
 }
+
+/* 左右兩側裝飾用圓形 */
+header::before,
+header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* 左側彩色圓形 */
+header::before {
+  width: 350px;
+  height: 350px;
+  top: 10%;
+  left: -150px; /* 延伸至頁面外 */
+  background: radial-gradient(circle, rgba(244, 162, 97, 0.8), transparent);
+  animation-delay: 0s;
+}
+
+/* 右側彩色圓形 */
+header::after {
+  width: 400px;
+  height: 400px;
+  bottom: 10%;
+  right: -180px; /* 延伸至頁面外 */
+  background: radial-gradient(circle, rgba(42, 157, 143, 0.8), transparent);
+  animation-delay: 3s;
+}
+
+/* 多層次彩色圓形裝飾 */
+header .circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+/* 每個圓形的位置與大小 */
+header .circle:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  top: 15%;
+  left: 20%;
+  background: rgba(244, 162, 97, 0.5); /* 橘色 */
+  animation-delay: 1s;
+}
+
+header .circle:nth-child(2) {
+  width: 250px;
+  height: 250px;
+  top: 35%;
+  left: 60%;
+  background: rgba(233, 196, 106, 0.5); /* 黃色 */
+  animation-delay: 2s;
+}
+
+header .circle:nth-child(3) {
+  width: 180px;
+  height: 180px;
+  top: 65%;
+  left: 35%;
+  background: rgba(42, 157, 143, 0.5); /* 綠色 */
+  animation-delay: 0.5s;
+}
+
+header .circle:nth-child(4) {
+  width: 300px;
+  height: 300px;
+  bottom: 25%;
+  right: 20%;
+  background: rgba(38, 70, 83, 0.5); /* 深綠色 */
+  animation-delay: 4s;
+}
+
+/* 浮動動畫 */
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px); /* 輕微浮動 */
+  }
+}
+
+
+
 
 header h1 {
   font-size: 2rem;
@@ -192,40 +291,48 @@ main {
 }
 
 /* 信箱驗證內容樣式 */
+/* 表單樣式 */
 .verification-form {
+  max-width: 400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 1rem;
-}
-
-.verification-form label {
-  font-weight: bold;
-  color: #386641; /* 深綠色 */
 }
 
 .verification-form input {
-  padding: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem;
-  width: 100%;
+  box-sizing: border-box;
 }
 
-.verification-form .submit-btn {
-  background-color: #4caf50; /* 綠色 */
-  color: white;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
+.verification-form input:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  padding: 0.75rem;
   font-size: 1rem;
   font-weight: bold;
-  transition: background-color 0.3s;
+  color: white;
+  background-color: #4caf50; /* 綠色按鈕 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.verification-form .submit-btn:hover {
-  background-color: #45a049; /* 更深的綠色 */
+.submit-btn:disabled {
+  background-color: #aaa; /* 灰色禁用狀態 */
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:enabled {
+  background-color: #45a049;
 }
 
 /* 頁尾樣式 */
@@ -537,5 +644,41 @@ table caption {
 /* FAQ 項目懸停效果 */
 .faq-item:hover {
   background-color: #e6f7f1;
+}
+/* 表單樣式 */
+.compose-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.compose-form input,
+.compose-form textarea,
+.compose-form button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.compose-form textarea {
+  resize: vertical; /* 僅允許垂直調整大小 */
+}
+
+.compose-form button {
+  background-color: #4caf50; /* 綠色按鈕 */
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.compose-form button:hover {
+  background-color: #45a049;
 }
 

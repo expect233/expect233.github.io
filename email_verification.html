@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>信箱驗證</title>
+    <title>陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
 </head>
 <body>
     <!-- 頁首 -->
@@ -13,7 +14,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">首頁</a></li>
-                <li><a href="mayor_mailbox.html">縣長信箱</a></li>
+                <li><a href="index.html">最新消息</a></li>
+                <li><a href="index.html">服務項目</a></li>
+                <li><a href="#">聯絡我們</a></li>
             </ul>
         </nav>
     </header>
@@ -22,11 +25,22 @@
     <main>
         <section class="content">
             <h2>請輸入您的電子信箱</h2>
-            <p>我們將在 24 小時內發送驗證碼到您的信箱，請留意查收。</p>
-            <form action="verify_email.php" method="post" class="verification-form">
+            <p>我們將發送驗證碼到您的信箱，請留意查收。</p>
+            <form action="process_verification.php" method="post" class="verification-form">
+                <!-- 電子信箱輸入 -->
                 <label for="email">電子信箱：</label>
                 <input type="email" id="email" name="email" placeholder="請輸入您的信箱" required>
-                <button type="submit" class="submit-btn">發送驗證碼</button>
+                <button type="button" id="send-code-btn" class="submit-btn">發送驗證碼</button>
+
+                <!-- 驗證碼輸入 -->
+                <div class="verification-code-section">
+                    <label for="verification-code">驗證碼：</label>
+                    <input type="text" id="verification-code" name="verification_code" placeholder="請輸入驗證碼" disabled required>
+                </div>
+
+                <!-- 確定按鈕 -->
+                <button type="button" id="confirm-btn" class="submit-btn" onclick="location.href='compose_mail.html'">確定</button>
+
             </form>
         </section>
     </main>
@@ -36,8 +50,8 @@
         <p>© 2025 屏東縣政府. 保留所有權利。</p>
         <p>地址：900219 屏東縣屏東市自由路527號</p>
         <p>電話：08-732-0415</p>
-        <p>辦公時間：週一至週五 08:00~12:00、13:00~17:00，彈性上下班時間：08:00-08:30 及 17:00-17:30
-            1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥 08-732-0415，服務時間每日 08:00~22:00</p>
+        <p>辦公時間：週一至週五 08:00~12:00、13:00~17:00，彈性上下班時間：08:00-08:30 及 17:00-17:30</p>
+        <p>1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥 08-732-0415，服務時間每日 08:00~22:00</p>
     </footer>
 </body>
 </html>

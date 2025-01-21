@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陳情入口整合平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>
+        <h1>撰寫信件</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="index.html">最新消息</a></li>
+                <li><a href="index.html">服務項目</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主要內容 -->
+    <main>
+        <section class="content">
+            <h2>請填寫以下資訊</h2>
+            <form action="submit_mail.php" method="post" enctype="multipart/form-data" class="compose-form">
+                <!-- Email -->
+                <label for="email">電子信箱：</label>
+                <input type="email" id="email" name="email" placeholder="請輸入您的電子信箱" required>
+
+                <!-- 聯絡姓名 -->
+                <label for="name">聯絡姓名：</label>
+                <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
+
+                <!-- 聯絡電話 -->
+                <label for="phone">聯絡電話：</label>
+                <input type="tel" id="phone" name="phone" placeholder="請輸入您的聯絡電話" required>
+
+                <!-- 通訊地址 -->
+                <label for="address">通訊地址：</label>
+                <input type="text" id="address" name="address" placeholder="請輸入您的通訊地址" required>
+
+                <!-- 案件地址 -->
+                <label for="case-address">案件地址：</label>
+                <input type="text" id="case-address" name="case_address" placeholder="請輸入案件地址">
+
+                <!-- 地號 -->
+                <label for="land-number">地號：</label>
+                <input type="text" id="land-number" name="land_number" placeholder="請輸入地號">
+
+                <!-- 主旨 -->
+                <label for="subject">主旨：</label>
+                <input type="text" id="subject" name="subject" placeholder="請輸入信件主旨" required>
+
+                <!-- 意見內容 -->
+                <label for="content">意見內容：</label>
+                <textarea id="content" name="content" rows="6" placeholder="請輸入您的意見內容" required></textarea>
+
+                <!-- 附件上傳 -->
+                <label for="attachment">附件：</label>
+                <input type="file" id="attachment" name="attachment">
+
+                <!-- 提交按鈕 -->
+                <button type="submit" class="submit-btn">送出</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2025 屏東縣政府. 保留所有權利。</p>
+        <p>地址：900219 屏東縣屏東市自由路527號</p>
+        <p>電話：08-732-0415</p>
+        <p>辦公時間：週一至週五 08:00~12:00、13:00~17:00，彈性上下班時間：08:00-08:30 及 17:00-17:30</p>
+        <p>1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥 08-732-0415，服務時間每日 08:00~22:00</p>
+    </footer>
+</body>
+</html>
