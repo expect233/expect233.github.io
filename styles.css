@@ -252,9 +252,11 @@ header nav a:hover {
 
 /* 主要內容樣式 */
 main {
+  flex-grow: 1; /* 填充剩餘高度，將頁尾推到底部 */
   max-width: 800px;
   margin: 2rem auto;
   padding: 1rem;
+  z-index: 1; /* 優先於頁尾波浪的層級 */
 }
 
 .content {
@@ -368,6 +370,7 @@ footer {
   position: relative;
   width: 100%;
   background-color: #f8f9fa; /* 背景色，確保文字可讀 */
+  z-index: 0; /* 確保頁尾位於主內容下層 */
 }
 
 .footer-content {
