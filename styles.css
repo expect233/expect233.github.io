@@ -368,11 +368,10 @@ footer {
 .footer-content {
   position: relative;
   z-index: 1; /* 確保文字在波浪上方 */
-  padding: 1rem;
+  padding: 2rem 1rem; /* 增加上下內邊距，防止文字與波浪重疊 */
   text-align: center;
-  /* background-color: #333; 確保文字背景色與波浪區分 */
-  color: white; /* 確保文字顏色可讀 */
-  font-size: 0.8rem;
+  color: white; /* 白色文字，與背景區分 */
+  font-size: 0.9rem;
 }
 
 #wave {
@@ -381,9 +380,9 @@ footer {
   left: 0;
   width: 100%;
   height: auto;
-  z-index: 0;
+  z-index: 0; /* 確保波浪位於背景層 */
+  pointer-events: none; /* 禁用波浪的鼠標事件，避免影響文字點擊 */
 }
-
 /* 公文查詢表單樣式 */
 .query-form {
   display: flex;
