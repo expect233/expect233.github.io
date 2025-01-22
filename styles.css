@@ -405,7 +405,7 @@ footer {
   }
 
   .footer-content {
-    font-size: 0.8rem; /* 縮小文字大小，防止溢出 */
+    font-size: 0.4rem; /* 縮小文字大小，防止溢出 */
     padding: 1rem; /* 減少內邊距，適配小螢幕 */
     word-break: break-word; /* 確保長文字在小螢幕換行 */
   }
