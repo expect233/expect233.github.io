@@ -236,14 +236,18 @@ header nav a:hover {
 
 /* 下拉選單項目樣式 */
 .dropdown-item {
-  background-color: #f8f9fa; /* 下拉項背景色 */
+  background-color: #f8f9fa; /* 項目背景色 */
   color: #343a40; /* 字體顏色 */
   font-weight: bold; /* 增加字體粗細 */
-  padding: 10px 20px;
-  border: none;
+  padding: 10px 20px; /* 調整內邊距 */
+  border: none; /* 去掉邊框 */
   cursor: pointer;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 增加陰影 */
   transition: background-color 0.3s ease;
+
+  width: 100%; /* 寬度設置為父級寬度（通常與按鈕一致） */
+  box-sizing: border-box; /* 確保 padding 不影響寬度計算 */
+  text-align: left; /* 文字靠左對齊 */
 }
 
 .dropdown-item:hover {
