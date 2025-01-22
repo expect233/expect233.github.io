@@ -79,10 +79,15 @@ header::after {
 }
 
 /* 多層次彩色圓形裝飾 */
+header nav {
+  position: relative;
+  z-index: 10; /* 確保導航在圓圈之上 */
+}
+
 header .circle {
   position: absolute;
+  z-index: 1; /* 確保圓圈在導航之下 */
   border-radius: 50%;
-  z-index: 0;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -776,5 +781,79 @@ ul {
 ul.white-dots {
   list-style: disc; /* 保留黑點樣式（白點在部分主題下自動顯示） */
   padding-left: 20px; /* 調整縮進以顯示點 */
+}
+
+.news-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.news-item.important {
+  border-left: 4px solid #ff4444;
+}
+
+.news-item h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.news-date {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0;
+}
+
+.news-content {
+  line-height: 1.6;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error {
+  color: #ff4444;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 圖表容器樣式 */
+.chart-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.chart-wrapper {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-wrapper h2 {
+  color: #386641;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* 響應式處理 */
+@media (max-width: 768px) {
+  .chart-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-wrapper {
+    padding: 1rem;
+  }
 }
 

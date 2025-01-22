@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏東縣政府1999統計圖表</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- 引入 Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- 頁首 -->
+    <header>
+      <h1>屏東縣政府1999統計圖表</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">返回首頁</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="chart-container">
+        <div class="chart-wrapper">
+          <h2>每月案件統計</h2>
+          <canvas id="monthlyChart"></canvas>
+        </div>
+
+        <div class="chart-wrapper">
+          <h2>案件類型分布</h2>
+          <canvas id="typeChart"></canvas>
+        </div>
+
+        <div class="chart-wrapper">
+          <h2>處理狀態統計</h2>
+          <canvas id="statusChart"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // 載入圖表資料
+      async function loadChartData() {
+        try {
+          const response = await fetch("chart_data.json");
+          const data = await response.json();
+          createCharts(data);
+        } catch (error) {
+          console.error("載入圖表資料時發生錯誤:", error);
+        }
+      }
+
+      // 建立圖表
+      function createCharts(data) {
+        // 每月案件統計圖表
+        new Chart(document.getElementById("monthlyChart"), {
+          type: "line",
+          data: {
+            labels: data.monthly.labels,
+            datasets: [
+              {
+                label: "案件數量",
+                data: data.monthly.data,
+                borderColor: "rgb(75, 192, 192)",
+                tension: 0.1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: "2024年每月案件數量趨勢",
+              },
+            },
+          },
+        });
+
+        // 案件類型圓餅圖
+        new Chart(document.getElementById("typeChart"), {
+          type: "pie",
+          data: {
+            labels: data.types.labels,
+            datasets: [
+              {
+                data: data.types.data,
+                backgroundColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(54, 162, 235)",
+                  "rgb(255, 205, 86)",
+                  "rgb(75, 192, 192)",
+                  "rgb(153, 102, 255)",
+                ],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "right",
+              },
+            },
+          },
+        });
+
+        // 處理狀態長條圖
+        new Chart(document.getElementById("statusChart"), {
+          type: "bar",
+          data: {
+            labels: data.status.labels,
+            datasets: [
+              {
+                label: "案件數量",
+                data: data.status.data,
+                backgroundColor: "rgb(75, 192, 192)",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
+      }
+
+      // 頁面載入時執行
+      document.addEventListener("DOMContentLoaded", loadChartData);
+    </script>
+  </body>
+</html>

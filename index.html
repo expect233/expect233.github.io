@@ -14,7 +14,7 @@
         <ul>
           <li><a href="#">首頁</a></li>
           <li><a href="#">最新消息</a></li>
-          <li><a href="#">服務項目</a></li>
+          <li><a href="chart.html">統計圖表</a></li>
           <li><a href="#">聯絡我們</a></li>
         </ul>
       </nav>
@@ -68,11 +68,10 @@
     <main>
       <section class="content">
         <h2>最新公告</h2>
-        <p>這裡是最新公告的內容。</p>
-      </section>
-      <section class="content">
-        <h2>服務項目</h2>
-        <p>這裡是服務項目的介紹。</p>
+        <div id="news-container">
+          <!-- 新聞內容將由 JavaScript 動態載入 -->
+          <div class="loading">載入中...</div>
+        </div>
       </section>
     </main>
 
@@ -111,5 +110,42 @@
         ></path>
       </svg>
     </footer>
+
+    <script>
+      // 載入最新消息
+      async function loadNews() {
+        try {
+          const response = await fetch("news.json");
+          const data = await response.json();
+          const newsContainer = document.getElementById("news-container");
+
+          // 清空載入中的提示
+          newsContainer.innerHTML = "";
+
+          // 顯示新聞內容
+          data.news.forEach((item) => {
+            const newsItem = document.createElement("div");
+            newsItem.className = `news-item ${
+              item.important ? "important" : ""
+            }`;
+
+            newsItem.innerHTML = `
+              <h3>${item.title}</h3>
+              <p class="news-date">發布日期：${item.date}</p>
+              <p class="news-content">${item.content}</p>
+            `;
+
+            newsContainer.appendChild(newsItem);
+          });
+        } catch (error) {
+          console.error("載入新聞資料時發生錯誤:", error);
+          document.getElementById("news-container").innerHTML =
+            '<p class="error">載入資料時發生錯誤，請稍後再試。</p>';
+        }
+      }
+
+      // 當頁面載入完成時執行載入新聞
+      document.addEventListener("DOMContentLoaded", loadNews);
+    </script>
   </body>
 </html>
