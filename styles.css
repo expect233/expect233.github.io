@@ -398,6 +398,23 @@ footer {
   z-index: 0; /* 確保波浪位於背景層 */
   pointer-events: none; /* 禁用波浪的鼠標事件，避免影響文字點擊 */
 }
+/* 手機端樣式調整 */
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 1rem 0; /* 減少頁尾內邊距，避免內容擁擠 */
+  }
+
+  .footer-content {
+    font-size: 0.8rem; /* 縮小文字大小，防止溢出 */
+    padding: 1rem; /* 減少內邊距，適配小螢幕 */
+    word-break: break-word; /* 確保長文字在小螢幕換行 */
+  }
+
+  #wave {
+    height: 100px; /* 減少波浪高度，防止遮擋其他內容 */
+  }
+}
+
 /* 公文查詢表單樣式 */
 .query-form {
   display: flex;
