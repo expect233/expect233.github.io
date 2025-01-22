@@ -258,7 +258,10 @@ main {
   padding: 1rem;
   z-index: 1; /* 優先於頁尾波浪的層級 */
 }
-
+/* 空白區域樣式 */
+.spacer {
+  height: 100px; /* 控制空白高度 */
+}
 .content {
   background-color: white;
   padding: 1.5rem;
