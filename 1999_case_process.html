@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- 頁首 -->
@@ -23,30 +24,40 @@
     <!-- 主要內容 -->
     <main>
         <section class="content">
-            <h2>案件處理流程</h2>
-            <ol>
-                <li><strong>案件登錄：</strong> 民眾可透過以下管道提出陳情：
-                    <ul>
+            <h2>案件登錄</h2>
+            <ul>
+                <li>民眾可透過以下管道提出陳情：
+                    <ul class="white-dots">
                         <li>縣長信箱（電子郵件）</li>
                         <li>紙本來信</li>
                         <li>1999電話錄案</li>
                         <li>鄉親有約</li>
                     </ul>
                 </li>
-                <li><strong>案件受理：</strong> 本府受理民眾陳情案件後，將依據案件性質分類，並指派至相關單位處理。</li>
-                <li><strong>案件處理：</strong> 相關單位接收案件後，將派員進行調查、處理，並於規定期限內完成。</li>
-                <li><strong>案件回覆：</strong> 處理完成後，將結果通知陳情人，並記錄於系統中供查閱。</li>
-                <li><strong>案件結案：</strong> 當處理完成且陳情人滿意時，案件狀態設置為結案。</li>
-            </ol>
-
-            <h2>案件處理規範</h2>
-            <ul>
-                <li>紙本來文陳情：處理期限為6個工作日。</li>
-                <li>電子文件、縣民時間、電話錄案（陳情類別）：處理期限為4個工作日。</li>
-                <li>電話錄案（諮詢類別）：處理期限為4小時，且不可辦理展期。</li>
+                <li>本府受理民眾陳情案件來源管道包括有縣長信箱(電子郵件)、紙本來信、1999電話錄案及鄉親有約等 ，由於人民陳情案攸關民眾權益甚鉅，本府採以案列管方式，對於逾期未處理之案件，每週開具催辦單進行稽催，至結案為止，人民陳情案件除法令另訂處理期限外，其處理期限如下：
+                <ul class="white-dots">
+                    <li>紙本來文陳情:六工作日。</li>
+                    <li>電子文件、縣民時間、電話錄案(陳情類別)，收件列管者:四工作日。</li>
+                    <li>電話錄案(諮詢類別):四小時，且不可辦理展期。</li>
+                </ul>
+            </li>
                 <li>對於案情複雜無法如期辦結之案件，行政暨研考處得主動邀集承辦人說明，協力克服困難設法解決，以降低民怨。</li>
             </ul>
+            <img src="陳情案件.jpg" alt="陳情案件" class="responsive-img">
+            <style>
+                .responsive-img {
+                    max-width: 100%; /* 圖片寬度不超過父容器 */
+                    height: auto;    /* 保持圖片的長寬比 */
+                }
+                </style>
+
         </section>
+        <h4>相關檔案</h4>
+
+        <!-- 在新標籤中打開 PDF -->
+            <a href="屏東縣政府暨所屬機關處理人民陳情案件作業規範.pdf" target="_blank" class="attachment-btn">
+            <i class="fas fa-download"></i> 屏東縣政府暨所屬機關處理人民陳情案件作業規範
+            </a>
     </main>
 
     <!-- 頁尾 -->

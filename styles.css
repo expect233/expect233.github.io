@@ -440,6 +440,30 @@ table caption {
   text-align: left;
   color: #333;
 }
+/* 1999附件樣式 */
+.attachment-btn {
+  display: inline-flex; /* 使用 inline-flex 將圖標與文字對齊 */
+  align-items: center; /* 圖標與文字垂直居中 */
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.attachment-btn i {
+  margin-right: 5px; /* 圖標與文字間距 */
+  font-size: 16px; /* 調整圖標大小 */
+}
+
+.attachment-btn:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
 
 /* 響應式處理 */
 @media (max-width: 768px) {
@@ -680,5 +704,18 @@ table caption {
 
 .compose-form button:hover {
   background-color: #45a049;
+}
+/* 1999流程規範 */
+/* 全局樣式：移除列表黑點 */
+ul {
+  list-style: none; /* 默認移除所有列表黑點 */
+  padding: 0;
+  margin: 0;
+}
+
+/* 特定列表保留白點 */
+ul.white-dots {
+  list-style: disc; /* 保留黑點樣式（白點在部分主題下自動顯示） */
+  padding-left: 20px; /* 調整縮進以顯示點 */
 }
 
