@@ -398,23 +398,32 @@ footer {
   z-index: 0; /* 確保波浪位於背景層 */
   pointer-events: none; /* 禁用波浪的鼠標事件，避免影響文字點擊 */
 }
+
 /* 手機端樣式調整 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { 
   footer {
-    padding: 1rem 0; /* 減少頁尾內邊距，避免內容擁擠 */
+    position: relative; /* 確保文字和波浪定位一致 */
+    padding: 1rem 0 5rem 0; /* 增加底部內邊距，讓文字遠離波浪邊界 */
   }
 
   .footer-content {
-    font-size: 0.4rem; /* 縮小文字大小，防止溢出 */
-    padding: 1rem; /* 減少內邊距，適配小螢幕 */
-    word-break: break-word; /* 確保長文字在小螢幕換行 */
+    font-size: 0.8rem; /* 保持文字清晰，但不會太小 */
+    padding: 0 1rem; /* 減少左右內邊距，避免文字擁擠 */
+    text-align: center; /* 文字居中顯示 */
+    word-break: break-word; /* 長文字換行 */
+    z-index: 1; /* 確保文字位於波浪上方 */
   }
 
   #wave {
-    height: auto; /* 減少波浪高度，防止遮擋其他內容 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* 固定波浪高度，防止因文字高度影響顯示 */
+    z-index: 0; /* 波浪在背景層 */
+    pointer-events: none; /* 禁用波浪圖形的鼠標事件 */
   }
 }
-
 /* 公文查詢表單樣式 */
 .query-form {
   display: flex;
