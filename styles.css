@@ -418,8 +418,8 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 120%;
-    height: 180px; /* 固定波浪高度，防止因文字高度影響顯示 */
+    width: 100%;
+    height: 235px; /* 固定波浪高度，防止因文字高度影響顯示 */
     z-index: 0; /* 波浪在背景層 */
     pointer-events: none; /* 禁用波浪圖形的鼠標事件 */
   }
