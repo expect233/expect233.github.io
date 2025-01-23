@@ -120,23 +120,22 @@
           const response = await fetch("news.json");
           const data = await response.json();
           const newsContainer = document.getElementById("news-container");
-
+    
           // 清空載入中的提示
           newsContainer.innerHTML = "";
-
+    
           // 顯示新聞內容
           data.news.forEach((item) => {
-            const newsItem = document.createElement("div");
-            newsItem.className = `news-item ${
-              item.important ? "important" : ""
-            }`;
-
+            // 使用 <a> 作為新聞項目
+            const newsItem = document.createElement("a");
+            newsItem.className = `news-item ${item.important ? "important" : ""}`;
+            newsItem.href = `news-details.html?id=${item.id}`; // 跳轉到詳情頁
             newsItem.innerHTML = `
               <h3>${item.title}</h3>
               <p class="news-date">發布日期：${item.date}</p>
-              <p class="news-content">${item.content}</p>
+              <p class="news-content">${item.summary}</p> <!-- 僅顯示摘要 -->
             `;
-
+    
             newsContainer.appendChild(newsItem);
           });
         } catch (error) {
@@ -145,9 +144,10 @@
             '<p class="error">載入資料時發生錯誤，請稍後再試。</p>';
         }
       }
-
+    
       // 當頁面載入完成時執行載入新聞
       document.addEventListener("DOMContentLoaded", loadNews);
     </script>
+    
   </body>
 </html>

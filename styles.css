@@ -820,31 +820,59 @@ ul.white-dots {
 }
 
 .news-item {
+  display: block; /* 確保整個新聞項目區域可點擊 */
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #f5f5f5; /* 背景顏色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加陰影 */
+  text-decoration: none; /* 移除超連結的下劃線 */
+  color: inherit; /* 繼承文本顏色 */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* 添加平滑過渡效果 */
+}
+
+.news-item:hover {
+  background-color: #e9e9e9; /* 懸停時的背景顏色變化 */
+  transform: translateY(-2px); /* 懸停時微微上移 */
 }
 
 .news-item.important {
-  border-left: 4px solid #ff4444;
+  border-left: 4px solid #ff4444; /* 為重要新聞添加左側紅色標記 */
 }
 
 .news-item h3 {
-  margin: 0 0 10px 0;
-  color: #333;
+  margin: 0 0 10px 0; /* 標題與日期之間的間距 */
+  color: #333; /* 標題文字顏色 */
+  font-size: 1.2rem; /* 增加標題字體大小 */
+  font-weight: bold; /* 標題加粗 */
 }
 
 .news-date {
-  font-size: 0.9em;
-  color: #666;
-  margin: 5px 0;
+  font-size: 0.9em; /* 日期字體大小 */
+  color: #666; /* 日期文字顏色 */
+  margin: 5px 0; /* 日期與內容的間距 */
 }
 
 .news-content {
-  line-height: 1.6;
+  color: #555; /* 內容的文字顏色 */
+  font-size: 1rem; /* 內容的字體大小 */
+  line-height: 1.5; /* 提高內容的行距以增加可讀性 */
 }
+@media (max-width: 768px) {
+  .news-item {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .news-item h3 {
+    font-size: 1rem;
+  }
+
+  .news-content {
+    font-size: 0.9rem;
+  }
+}
+
 
 .loading {
   text-align: center;
