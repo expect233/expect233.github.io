@@ -1004,4 +1004,21 @@ ul.white-dots {
     padding: 1rem;
   }
 }
+/*公文查詢系統下方聲明 */
 
+/* 聲明文字樣式 */
+.statement-text {
+  font-size: 1rem;
+  line-height: 1.8; /* 提升文字可讀性 */
+  color: #333; /* 深灰色文字 */
+  margin: 0; /* 去除默認外邊距 */
+  text-align: center; /* 將文字居中對齊 */
+}
+@media (max-width: 768px) {
+  .statement-section {
+    padding: 10px;
+  }
+  .statement-text {
+    font-size: 0.8rem;
+  }
+}
