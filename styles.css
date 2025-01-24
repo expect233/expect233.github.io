@@ -815,6 +815,12 @@ table caption {
 .chinese-list li {
   margin-bottom: 10px; /* 列表項的間距 */
 }
+/* 高亮樣式 */
+.highlight {
+  font-weight: bold; /* 加粗文字 */
+  color: #d9534f; /* 鮮紅色文字，表示警告或重點 */
+ 
+}
 /* 案件流程與規範 */
 /* 外部容器樣式 */
 .icon-button-section {
