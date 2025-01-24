@@ -34,12 +34,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_number">來文文號(2選1)：</label>
-                    <input type="text" id="id_number" name="id_number" placeholder="請輸入來文機關的公文文號" required>
+                    <label for="incoming_id">來文文號(2選1)：</label>
+                    <input type="text" id="incoming_id" name="incoming_id" placeholder="請輸入來文機關的公文文號">
                 </div>
                 <div class="form-group">
-                    <label for="id_number">公文文號(2選1)：</label>
-                    <input type="text" id="id_number" name="id_number" placeholder="請輸入本府收文的公文文號" required>
+                    <label for="official_id">公文文號(2選1)：</label>
+                    <input type="text" id="official_id" name="official_id" placeholder="請輸入本府收文的公文文號">
                 </div>
 
                 <div class="form-group">
@@ -58,7 +58,27 @@
         </section>
         
     </main>
-
+    <script>
+    document.querySelector('.query-form').addEventListener('submit', function (e) {
+        const docNumber = document.getElementById('doc_number');
+        const incomingId = document.getElementById('incoming_id');
+        const officialId = document.getElementById('official_id');
+    
+        // 檢查來文文號和公文文號是否都為空
+        if (!incomingId.value.trim() && !officialId.value.trim()) {
+            e.preventDefault(); // 阻止表單提交
+            alert('請至少填寫「來文文號」或「公文文號」其中一個欄位！');
+            return;
+        }
+    
+        // 確保來文機關（doc_number）是必填的
+        if (!docNumber.value.trim()) {
+            e.preventDefault(); // 阻止表單提交
+            alert('「來文機關」為必填欄位，請填寫！');
+        }
+    });
+    
+    </script>
 
 </body>
 </html>
