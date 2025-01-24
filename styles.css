@@ -805,6 +805,17 @@ table caption {
   background-color: #e0e0e0;
   color: #333;
 }
+/* 縣長信箱規範 */
+.chinese-list {
+  list-style-type: cjk-ideographic; /* 使用中文標點，如「一、二、三」 */
+  padding-left: 20px; /* 增加左側內邊距，避免標點貼邊 */
+  margin: 1rem 0; /* 增加上下間距 */
+}
+
+.chinese-list li {
+  margin-bottom: 10px; /* 列表項的間距 */
+}
+
 /* 1999流程規範 */
 /* 全局樣式：移除列表黑點 */
 ul {
