@@ -399,6 +399,25 @@ footer {
   pointer-events: none; /* 禁用波浪的鼠標事件，避免影響文字點擊 */
 }
 
+/* 超連結樣式 */
+.footer-link {
+  text-decoration: none; /* 移除下劃線 */
+  color: #666; /* 初始灰色文字 */
+  font-weight: 400; /* 正常字重 */
+  margin: 0 5px; /* 超連結之間增加間距 */
+  transition: color 0.3s ease; /* 添加平滑的顏色過渡效果 */
+}
+
+/* 分隔符樣式 */
+.footer-content span {
+  color: #ccc; /* 分隔符的淺灰色 */
+}
+
+/* 超連結懸停效果 */
+.footer-link:hover {
+  color: #2c7a7b; /* 懸停時改為柔和的綠色 */
+  text-decoration: underline; /* 添加下劃線 */
+}
 /* 手機端樣式調整 */
 @media screen and (max-width: 768px) { 
   footer {
