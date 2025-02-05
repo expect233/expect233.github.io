@@ -418,7 +418,7 @@ footer {
   z-index: 1; /* 確保文字在波浪上方 */
   padding: 2rem 1rem; /* 增加上下內邊距，防止文字與波浪重疊 */
   text-align: center;
-  color: white; /* 白色文字，與背景區分 */
+  color: black; /* 黑色文字，與背景區分 */
   font-size: 0.9rem;
 }
 
