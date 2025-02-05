@@ -22,23 +22,34 @@
     <main>
       <section class="chart-container">
         <div class="chart-wrapper">
-          <h2>每月案件統計</h2>
-          <canvas id="monthlyChart"></canvas>
-        </div>
-
-        <div class="chart-wrapper">
-          <h2>案件類型分布</h2>
+          <h2>案件類別統計</h2>
           <canvas id="typeChart"></canvas>
         </div>
 
         <div class="chart-wrapper">
-          <h2>處理狀態統計</h2>
+          <h2>案件來源統計</h2>
           <canvas id="statusChart"></canvas>
+        </div>
+
+        <div class="chart-wrapper">
+          <h2>鄉鎮別統計</h2>
+          <canvas id="monthlyChart" width="400" height="1000"></canvas>
         </div>
       </section>
     </main>
 
     <script>
+      // 使用 fetch API 獲取 JSON 文件
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("chart_data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            // 動態設置標題
+            document.querySelector("h1").textContent = data.title;
+          })
+          .catch((error) => console.error("Error fetching the JSON:", error));
+      });
+
       // 載入圖表資料
       async function loadChartData() {
         try {
@@ -52,26 +63,33 @@
 
       // 建立圖表
       function createCharts(data) {
-        // 每月案件統計圖表
+        // 鄉鎮別
         new Chart(document.getElementById("monthlyChart"), {
-          type: "line",
+          type: "bar",
           data: {
             labels: data.monthly.labels,
             datasets: [
               {
                 label: "案件數量",
                 data: data.monthly.data,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
                 borderColor: "rgb(75, 192, 192)",
-                tension: 0.1,
+                borderWidth: 1,
               },
             ],
           },
           options: {
+            indexAxis: "y",
             responsive: true,
             plugins: {
               title: {
-                display: true,
-                text: "2024年每月案件數量趨勢",
+                display: false,
+                text: "",
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
               },
             },
           },
@@ -105,7 +123,7 @@
           },
         });
 
-        // 處理狀態長條圖
+        // 案件來源長條圖
         new Chart(document.getElementById("statusChart"), {
           type: "bar",
           data: {

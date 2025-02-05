@@ -1,48 +1,192 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳情入口整合平台</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>案件查詢</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="index.html">最新消息</a></li>
-                <li><a href="chart.html">統計圖表</a></li>
-                <li><a href="#">聯絡我們</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="query-form">
-            <h2>依案件編號查詢</h2>
-            <form action="process_query.php" method="post">
-                <label for="case_number">您的行動電話：</label>
-                <input type="text" id="case_phone" name="case_phone" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案件查詢</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* **統一區塊大小 & 版面美化** */
+      .query-container {
+        display: flex;
+        gap: 30px; /* 設定區塊間距 */
+        justify-content: space-between;
+        align-items: stretch; /* 讓區塊高度一致 */
+      }
 
-                <label for="case_number">案件編號：</label>
-                <input type="text" id="case_number" name="case_number" required>
-                
-                <label for="case_password">案件密碼：</label>
-                <input type="password" id="case_password" name="case_password" required>
-                
-                <label for="captcha">驗證碼：</label>
-                <div class="captcha-container">
-                    <input type="text" id="captcha" name="captcha" required>
-                    <img src="captcha_image.php" alt="驗證碼圖片">
-                </div>
-                
-                <button type="submit">送出查詢</button>
+      /* **統一區塊樣式** */
+      .query-section {
+        flex: 1;
+        padding: 20px;
+        border: 2px solid #ddd; /* 增加邊框讓區塊更明顯 */
+        border-radius: 10px; /* 圓角邊框 */
+        background-color: #f9f9f9; /* 淺色背景 */
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .query-section h3 {
+        text-align: center;
+        font-size: 1.4rem;
+        color: #2c3e50;
+      }
+
+      /* **輸入框樣式** */
+      .query-form label {
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+        display: block;
+      }
+
+      .query-form input {
+        width: 100%;
+        padding: 8px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+        transition: 0.3s;
+      }
+
+      .query-form input:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+      }
+
+      /* **驗證碼區塊** */
+      .captcha-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .captcha-container img {
+        margin-left: 10px;
+        height: 40px;
+        border-radius: 5px;
+      }
+
+      /* **按鈕樣式** */
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        background-color: #3498db; /* 藍色按鈕 */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #2980b9;
+      }
+
+      .submit-btn:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+      }
+
+      /* **響應式設計** */
+      @media (max-width: 768px) {
+        .query-container {
+          flex-direction: column; /* 在小螢幕時變回上下排列 */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>案件查詢</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="chart.html">統計圖表</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="content">
+        <h2>案件進度查詢</h2>
+
+        <!-- **讓兩個查詢區塊左右對齊** -->
+        <div class="query-container">
+          
+          <!-- 1999 案件進度查詢 -->
+          <div class="query-section">
+            <h3>1999案件進度查詢</h3>
+            <form action="process_1999_query.php" method="post" class="query-form" id="form-1999">
+              <label for="phone_number">手機號碼：</label>
+              <input type="tel" id="phone_number" name="phone_number" placeholder="請輸入手機號碼" required />
+
+              <label for="case_number_1999">案件編號：</label>
+              <input type="text" id="case_number_1999" name="case_number_1999" placeholder="請輸入案件編號" required />
+
+              <button type="submit" class="submit-btn" id="query-btn-1999" disabled>查詢</button>
             </form>
-            <p><a href="forgot_password.html">忘記案件密碼</a></p>
-        </section>
-        
+          </div>
+
+          <!-- 縣長信箱案件進度查詢 -->
+          <div class="query-section">
+            <h3>縣長信箱案件進度查詢</h3>
+            <form action="process_mayor_query.php" method="post" class="query-form" id="form-mayor">
+              <label for="case_number_mayor">案件編號：</label>
+              <input type="text" id="case_number_mayor" name="case_number_mayor" placeholder="請輸入案件編號" required />
+
+              <label for="email">電子郵件：</label>
+              <input type="email" id="email" name="email" placeholder="請輸入電子郵件" required />
+
+              <label for="captcha">驗證碼：</label>
+              <div class="captcha-container">
+                <input type="text" id="captcha" name="captcha" placeholder="請輸入驗證碼" required />
+                <img src="captcha_image.php" alt="驗證碼圖片" />
+              </div>
+
+              <button type="submit" class="submit-btn" id="query-btn-mayor" disabled>查詢</button>
+            </form>
+          </div>
+
+        </div> <!-- 結束 .query-container -->
+
+      </section>
     </main>
 
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1999 案件查詢按鈕
+        const phoneInput = document.getElementById("phone_number");
+        const caseNumber1999Input = document.getElementById("case_number_1999");
+        const queryButton1999 = document.getElementById("query-btn-1999");
+
+        function validate1999Form() {
+          queryButton1999.disabled = !(phoneInput.value.trim() !== "" && caseNumber1999Input.value.trim() !== "");
+        }
+
+        phoneInput.addEventListener("input", validate1999Form);
+        caseNumber1999Input.addEventListener("input", validate1999Form);
+        validate1999Form();
+
+        // 縣長信箱案件查詢按鈕
+        const caseNumberMayorInput = document.getElementById("case_number_mayor");
+        const emailInput = document.getElementById("email");
+        const captchaInput = document.getElementById("captcha");
+        const queryButtonMayor = document.getElementById("query-btn-mayor");
+
+        function validateMayorForm() {
+          queryButtonMayor.disabled = !(caseNumberMayorInput.value.trim() !== "" && emailInput.value.trim() !== "" && captchaInput.value.trim() !== "");
+        }
+
+        caseNumberMayorInput.addEventListener("input", validateMayorForm);
+        emailInput.addEventListener("input", validateMayorForm);
+        captchaInput.addEventListener("input", validateMayorForm);
+        validateMayorForm();
+      });
+    </script>
+  </body>
 </html>

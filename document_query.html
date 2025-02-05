@@ -1,84 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>陳情入口整合平台</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!-- 頁首 -->
     <header>
-        <h1>公文查詢系統</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="index.html">最新消息</a></li>
-                <li><a href="chart.html">統計圖表</a></li>
-                <li><a href="#">聯絡我們</a></li>
-            </ul>
-        </nav>
+      <h1>公文查詢系統</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <!-- <li><a href="index.html">最新消息</a></li> -->
+          <li><a href="chart.html">統計圖表</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- 主要內容 -->
     <main>
-        <section class="content">
-            <h2>查詢您的公文</h2>
-            <p>您好：</p>
-            <p>此系統提供您可查詢當初您至縣府辦理的各項申辦案件，了解該筆案件的辦理進度及相關資訊。</p>
-            <p>請您輸入欲查詢之必要條件(「來文機關」請鍵入當初送件的單位名稱；「來文文號」為來文單位發文號或「公文文號」為縣府文號。 查詢區間為近一年之公文，如不知公文文號請洽業務單位) ，再按下方查詢功能鍵，我們將幫您找出符合條件之公文與詳細資訊。</p>
-            <form action="process_query.php" method="post" class="query-form">
-                <div class="form-group">
-                    <label for="doc_number">來文機關(必填)：</label>
-                    <input type="text" id="doc_number" name="doc_number" placeholder="請輸入公司名稱或申請人或團體名稱" required>
-                </div>
+      <section class="content">
+        <h2>查詢您的公文</h2>
+        <p>您好：</p>
+        <p>
+          此系統提供您可查詢當初您至縣府辦理的各項申辦案件，了解該筆案件的辦理進度及相關資訊。
+        </p>
+        <p>
+          請您輸入欲查詢之必要條件(「來文機關」請鍵入當初送件的單位名稱；「來文文號」為來文單位發文號或「公文文號」為縣府文號。
+          查詢區間為近一年之公文，如不知公文文號請洽業務單位)
+          ，再按下方查詢功能鍵，我們將幫您找出符合條件之公文與詳細資訊。
+        </p>
+        <form action="process_query.php" method="post" class="query-form">
+          <div class="form-group">
+            <label for="doc_number">來文機關(必填)：</label>
+            <input
+              type="text"
+              id="doc_number"
+              name="doc_number"
+              placeholder="請輸入公司名稱或申請人或團體名稱"
+              required
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="incoming_id">來文文號(2選1)：</label>
-                    <input type="text" id="incoming_id" name="incoming_id" placeholder="請輸入來文機關的公文文號">
-                </div>
-                <div class="form-group">
-                    <label for="official_id">公文文號(2選1)：</label>
-                    <input type="text" id="official_id" name="official_id" placeholder="請輸入本府收文的公文文號">
-                </div>
+          <div class="form-group">
+            <label for="incoming_id">來文文號(2選1)：</label>
+            <input
+              type="text"
+              id="incoming_id"
+              name="incoming_id"
+              placeholder="請輸入來文機關的公文文號"
+            />
+          </div>
+          <div class="form-group">
+            <label for="official_id">公文文號(2選1)：</label>
+            <input
+              type="text"
+              id="official_id"
+              name="official_id"
+              placeholder="請輸入本府收文的公文文號"
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="date">申請日期：</label>
-                    <input type="date" id="date" name="date">
-                </div>
+          <div class="form-group">
+            <label for="date">申請日期：</label>
+            <input type="date" id="date" name="date" />
+          </div>
 
-                <button type="submit" class="submit-btn">查詢</button>
-                <button type="reset" class="reset-btn">重設</button>
-            </form>
-            
-            <p class="statement-text">
-                如您輸入任何條件，均無法查詢到需要之資料，請電詢本府總收文。<br>電話:(08)7320415-6118，或洽本府各相關主管單位收發人員。
-              </p>
-        
-        </section>
-        
+          <button type="submit" class="submit-btn">查詢</button>
+          <button type="reset" class="reset-btn">重設</button>
+        </form>
+
+        <p class="statement-text">
+          如您輸入任何條件，均無法查詢到需要之資料，請電詢本府總收文。<br />電話:(08)7320415-6118，或洽本府各相關主管單位收發人員。
+        </p>
+      </section>
     </main>
     <script>
-    document.querySelector('.query-form').addEventListener('submit', function (e) {
-        const docNumber = document.getElementById('doc_number');
-        const incomingId = document.getElementById('incoming_id');
-        const officialId = document.getElementById('official_id');
-    
-        // 檢查來文文號和公文文號是否都為空
-        if (!incomingId.value.trim() && !officialId.value.trim()) {
-            e.preventDefault(); // 阻止表單提交
-            alert('請至少填寫「來文文號」或「公文文號」其中一個欄位！');
-            return;
-        }
-    
-        // 確保來文機關（doc_number）是必填的
-        if (!docNumber.value.trim()) {
-            e.preventDefault(); // 阻止表單提交
-            alert('「來文機關」為必填欄位，請填寫！');
-        }
-    });
-    
-    </script>
+      document
+        .querySelector(".query-form")
+        .addEventListener("submit", function (e) {
+          const docNumber = document.getElementById("doc_number");
+          const incomingId = document.getElementById("incoming_id");
+          const officialId = document.getElementById("official_id");
 
-</body>
+          // 檢查來文文號和公文文號是否都為空
+          if (!incomingId.value.trim() && !officialId.value.trim()) {
+            e.preventDefault(); // 阻止表單提交
+            alert("請至少填寫「來文文號」或「公文文號」其中一個欄位！");
+            return;
+          }
+
+          // 確保來文機關（doc_number）是必填的
+          if (!docNumber.value.trim()) {
+            e.preventDefault(); // 阻止表單提交
+            alert("「來文機關」為必填欄位，請填寫！");
+          }
+        });
+    </script>
+  </body>
 </html>

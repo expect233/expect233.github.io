@@ -304,7 +304,6 @@ main {
   font-size: 1rem;
   color: #333;
 }
-
 /* 按鈕樣式 */
 #submit-btn {
   background-color: #d6d6d6; /* 禁用時的灰色 */
@@ -326,6 +325,40 @@ main {
 #submit-btn:enabled:hover {
   background-color: #45a049; /* 更深的綠色 */
 }
+/* **統一按鈕樣式** */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #3498db; /* 預設藍色 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* **懸浮時的效果（僅在啟用時生效）** */
+.submit-btn:not(:disabled):hover {
+  background-color: #2980b9; /* 深藍色 */
+  transform: translateY(-2px); /* 微微上升效果 */
+}
+
+/* **禁用狀態** */
+.submit-btn:disabled {
+  background-color: #bdc3c7 !important; /* 禁用時灰色，`!important` 確保不被覆蓋 */
+  cursor: not-allowed;
+  transform: none; /* 禁用時不浮動 */
+  pointer-events: none; /* 禁用時完全無法互動 */
+}
+
+/* **確保禁用狀態時不會有懸浮效果** */
+.submit-btn:disabled:hover {
+  background-color: #bdc3c7 !important; /* 保持灰色 */
+  transform: none; /* 禁用狀態時不允許浮動 */
+}
+
 
 /* 信箱驗證內容樣式 */
 /* 表單樣式 */
@@ -788,17 +821,35 @@ table caption {
 }
 
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 1.7rem; /* 在小螢幕上進一步調整字體大小 */
+  header {
+    padding: 2rem 0;
   }
 
-  nav a, .query-btn {
-    font-size: 1.2rem; /* 在小螢幕上調整字體大小 */
+  header h1 {
+    font-size: 1.5rem;
+    /* 調整字體大小 */
+    margin: 10px 0;
+    /* 減少外邊距 */
+  }
+
+  nav a{
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .query-btn {
+    font-size: 1rem;
+    /* 調整字體大小 */
+    padding: 0.3rem 0.5rem;
+    /* 減少內邊距 */
+    margin: 5px 0;
+    /* 減少外邊距 */
   }
 
   .footer-content {
-    font-size: 0.5rem; /* 調整字體大小 */
-    padding: 0.2rem 0.5rem;
+    padding: 10px;
+    /* 減少內邊距 */
   }
 }
 /* 1999附件樣式 */
@@ -825,15 +876,39 @@ table caption {
   color: #333;
 }
 /* 縣長信箱規範 */
+
+/* **移除 `<ol>` 預設的 1.2.3.** */
 .chinese-list {
-  list-style-type: cjk-ideographic; /* 使用中文標點，如「一、二、三」 */
-  padding-left: 20px; /* 增加左側內邊距，避免標點貼邊 */
-  margin: 1rem 0; /* 增加上下間距 */
+  list-style-type: none; /* 移除自動數字 */
+  counter-reset: section; /* 設定計數器 */
+  padding-left: 0;
 }
 
-.chinese-list li {
-  margin-bottom: 10px; /* 列表項的間距 */
+/* **讓「一、二、三」自動產生** */
+.chinese-list > li {
+  font-size: 1.1rem; /* 適中大小 */
+  font-weight: normal; /* 不要太粗 */
+  margin-top: 15px;
+  counter-increment: section; /* 計數器增加 */
+  position: relative;
+  padding-left: 30px; /* 確保前面「一、二、三」有空間 */
 }
+
+/* **讓大標題前自動加「一、二、三」** */
+.chinese-list > li::before {
+  content: counter(section, cjk-ideographic) "、 "; /* 轉換為中文數字 */
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* **次級列表 1. 2. 3. (讓它往右縮排)** */
+.sub-list {
+  list-style-type: decimal;
+  margin-left: 30px; /* 調整小標的縮排距離 */
+  font-size: 1rem;
+}
+
 /* 高亮樣式 */
 .highlight {
   font-weight: bold; /* 加粗文字 */
@@ -847,6 +922,7 @@ table caption {
   justify-content: space-around; /* 平分按鈕間距 */
   align-items: center;
   padding: 10px 10px;
+  margin: 20px 0;
   background-color: #f0f8ff; /* 柔和的藍色背景 */
   border-radius: 12px; /* 讓容器更圓潤 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加淡淡的陰影 */
@@ -902,15 +978,42 @@ table caption {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 添加文字陰影 */
 }
 
-/* 響應式設計 */
+
+/* 針對行動裝置的媒體查詢 */
 @media (max-width: 768px) {
   .icon-button-section {
-    flex-direction: column; /* 小螢幕垂直排列 */
-    padding: 20px 10px;
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    justify-content: center; /* 水平居中 */
+    padding: 10px;
   }
 
   .icon-button {
-    margin: 15px 0;
+    width: 45%; /* 調整寬度以適應兩個一列 */
+    margin: 5px; /* 增加間距 */
+    transition: transform 0.2s;
+  }
+
+  .icon-button:hover {
+    transform: scale(1.05);
+  }
+
+  .icon-circle {
+    margin: 10px auto;
+    background-color: #00aaff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-button span {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    text-align: center; /* 文字居中 */
   }
 }
 
@@ -1046,4 +1149,4 @@ ul.white-dots {
   .statement-text {
     font-size: 0.8rem;
   }
-}
+} 
