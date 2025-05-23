@@ -8,45 +8,27 @@
 /* 頁面背景與字體 */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9fdf8; /* 非常淡的綠色背景 */
-  color: #333; /* 通用文字顏色 */
+  background-color: #FDFCFB; 
+  color: #4A4A4A; 
   line-height: 1.6;
   margin: 0;
-  padding-bottom: 200px; /* 增加底部填充 */
+  padding-bottom: 200px; 
 }
 
 html {
-  font-size: 16px; /* 確保根元素的字體大小是標準的 */
+  font-size: 16px; 
 }
 
 /* 頁首樣式 */
 header {
-  background-color: #9fc8b1; /* 主背景色 */
-  color: white;
-  padding: 4rem 0; /* 增加內邊距 */
+  background: linear-gradient(135deg, #A8E6CF, #FFD3B6); 
+  color: #4A4A4A;
+  padding: 3.5rem 0;
   text-align: center;
   position: relative;
-  overflow: hidden; /* 隱藏超出區域的裝飾圖形 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 增加陰影以提高可讀性 */
-
-  /* 平滑漸層背景圖案 */
-      background:
-        radial-gradient(110.35% 80.79% at 6% 103.92%,
-          rgba(37, 169, 239, 1) 0%,
-          rgba(37, 169, 239, 0) 100%),
-        linear-gradient(169.3deg,
-          rgba(205, 249, 232, 1) 15%,
-          rgba(205, 249, 232, 0) 46%),
-        radial-gradient(123% 73% at 107% 96%,
-          rgba(255, 253, 177, 1) 20%,
-          rgba(254, 228, 191, 1) 60%,
-          rgba(240, 189, 208, 1) 75%,
-          rgba(255, 129, 38, 0) 100%),
-        linear-gradient(0deg,
-          rgba(0, 204, 131, 1) 0%,
-          rgba(0, 204, 131, 1) 100%);
- }
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 /* 左右兩側裝飾用圓形 */
 header::before,
@@ -54,218 +36,253 @@ header::after {
   content: '';
   position: absolute;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 2;
   animation: float 6s ease-in-out infinite;
 }
 
-/* 左側彩色圓形 */
+/* 左側圓形 */
 header::before {
-  width: 350px;
-  height: 350px;
-  top: 10%;
-  left: -150px; /* 延伸至頁面外 */
-  background: radial-gradient(circle, rgba(244, 162, 97, 0.8), transparent);
+  width: 320px;
+  height: 320px;
+  top: 5%;
+  left: -120px;
+  background: radial-gradient(circle, rgba(168, 230, 207, 0.8), transparent);
   animation-delay: 0s;
 }
 
-/* 右側彩色圓形 */
+/* 右側圓形 */
 header::after {
-  width: 400px;
-  height: 400px;
-  bottom: 10%;
-  right: -180px; /* 延伸至頁面外 */
-  background: radial-gradient(circle, rgba(42, 157, 143, 0.8), transparent);
+  width: 350px;
+  height: 350px;
+  bottom: 5%;
+  right: -140px;
+  background: radial-gradient(circle, rgba(255, 218, 185, 0.8), transparent);
   animation-delay: 3s;
 }
 
 /* 多層次彩色圓形裝飾 */
 header nav {
   position: relative;
-  z-index: 10; /* 確保導航在圓圈之上 */
+  z-index: 10;
 }
-
+/* 調整圓形動畫樣式 */
 header .circle {
   position: absolute;
-  z-index: 1; /* 確保圓圈在導航之下 */
   border-radius: 50%;
+  opacity: 0.6; 
   animation: float 8s ease-in-out infinite;
+  z-index: 10; /* 確保在 Modal 上方 */
+  filter: blur(5px); /* 柔和的模糊效果 */
 }
 
-/* 每個圓形的位置與大小 */
 header .circle:nth-child(1) {
-  width: 200px;
-  height: 200px;
-  top: 15%;
-  left: 20%;
-  background: rgba(244, 162, 97, 0.5); /* 橘色 */
-  animation-delay: 1s;
+  width: 120px;
+  height: 120px;
+  top: 8%;
+  left: 10%;
+  background: rgba(255, 183, 77, 0.4); /* 淡橘色 */
+  animation-delay: 0s;
 }
 
 header .circle:nth-child(2) {
-  width: 250px;
-  height: 250px;
-  top: 35%;
-  left: 60%;
-  background: rgba(233, 196, 106, 0.5); /* 黃色 */
-  animation-delay: 2s;
-}
-
-header .circle:nth-child(3) {
   width: 180px;
   height: 180px;
-  top: 65%;
+  top: 20%;
+  left: 75%;
+  background: rgba(72, 219, 251, 0.4); /* 淡藍色 */
+  animation-delay: 1.5s;
+}
+
+
+header .circle:nth-child(3) {
+  width: 220px;
+  height: 220px;
+  top: 55%;
   left: 35%;
-  background: rgba(42, 157, 143, 0.5); /* 綠色 */
-  animation-delay: 0.5s;
+  background: rgba(123, 237, 159, 0.4); /* 淡綠色 */
+  animation-delay: 3s;
 }
 
 header .circle:nth-child(4) {
-  width: 300px;
-  height: 300px;
-  bottom: 25%;
-  right: 20%;
-  background: rgba(38, 70, 83, 0.5); /* 深綠色 */
-  animation-delay: 4s;
+  width: 150px;
+  height: 150px;
+  top: 75%;
+  left: 65%;
+  background: rgba(255, 107, 129, 0.4); /* 淡粉紅色 */
+  animation-delay: 2s;
 }
+
+
 
 /* 浮動動畫 */
 @keyframes float {
   0%, 100% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
   50% {
-      transform: translateY(-20px); /* 輕微浮動 */
+    transform: translateY(-20px); /* 浮動效果 */
   }
 }
 
+/* 頁首標題 */
 header h1 {
-  color: white; /* 確保字體顏色為白色 */
-  font-size: 2rem ; /* h1 字體大小 */
-  line-height: 1.5; /* 增加行高 */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 增加陰影以提高對比 */
-  margin: 20px 0; /* 增加外邊距 */
+  color: white;
+  font-size: 3.5rem;
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
+  position: relative;
+  z-index: 15;
+}
+/* logo 配置 */
+.logo-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 20;
+}
+.logo-img {
+  height: 70px;
+  object-fit: contain;
+}
+/* 手機端調整 */
+@media (max-width: 768px) {
+  .logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20;
+  }
+
+  .logo-img {
+    height: 30px; /* 手機縮小 logo 大小 */
+  }
 }
 
+
+/* 頁首導航 */
 header nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* 允許自動斷行 */
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 0;
   margin: 0;
-  font-size: 1rem; /* nav ul 字體大小 */
+  font-size: 1rem;
 }
 
 header nav a {
-  color: white; /* 將導航連結設置為白色 */
-  font-size: 1.2rem; /* 增加字體大小 */
-  font-weight: bold; /* 增加字體粗細 */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 增加陰影 */
-  margin: 0 10px; /* 增加左右間距 */
-  white-space: nowrap; /* 防止斷行 */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 0 10px;
+  white-space: nowrap;
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: background 0.3s;
 }
 
 header nav a:hover {
-  background-color: #86c99d; /* 深淡綠色 */
+  background-color: #86c99d;
   border-radius: 5px;
 }
-
 /* 按鈕查詢區樣式 */
 .query-section {
-  background-color: #e6f7f9; /* 淡藍綠色背景 */
+  background: linear-gradient(135deg, #E9F5DB, #FDE2E4); 
   padding: 2rem;
   text-align: center;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
+/* 查詢按鈕區塊 */
 .query-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem; /* 增加按鈕間距 */
   justify-content: center;
+  padding-top: 1rem;
 }
 
-/* 查詢按鈕基本樣式 */
+/* 查詢按鈕樣式 */
 .query-btn {
-  background-color: #6c757d; /* 按鈕背景色 */
-  color: white; /* 字體顏色 */
-  font-size: 1.5rem ; /* 強制應用字體大小 */
+  background: linear-gradient(135deg, #52B788, #F4A261); 
+  color: white;
+  font-size: 1.5rem !important;
   font-weight: bold;
-  padding: 0.5rem; /* 增加內邊距 */
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 增加陰影 */
-  transition: background-color 0.3s ease;
-  white-space: nowrap; /* 防止斷行 */
-  margin: 10px; /* 增加外邊距 */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .query-btn:hover {
-  background-color: #5a6268; /* 懸停時的背景色 */
+  background: linear-gradient(135deg, #40916C, #E76F51); 
+  transform: translateY(-3px);
 }
 
-/* 下拉選單容器 */
+/* 下拉選單 */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* 下拉選單的隱藏內容 */
 .dropdown-menu {
-  display: none; /* 默認隱藏 */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background: linear-gradient(135deg, #E9F5DB, #FDE2E4); 
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
   z-index: 1000;
-  width: 200px;
+  min-width: 100%; 
 }
 
-/* 顯示下拉選單 */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* 下拉選單項目樣式 */
 .dropdown-item {
-  background-color: #f8f9fa; /* 項目背景色 */
-  color: #343a40; /* 字體顏色 */
-  font-weight: bold; /* 增加字體粗細 */
-  padding: 10px 20px; /* 調整內邊距 */
-  border: none; /* 去掉邊框 */
+  font-size: 1.2rem; 
+  background-color: rgba(255, 255, 255, 0.8); 
+  color: #386641;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
-
-  width: 100%; /* 寬度設置為父級寬度（通常與按鈕一致） */
-  box-sizing: border-box; /* 確保 padding 不影響寬度計算 */
-  text-align: left; /* 文字靠左對齊 */
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .dropdown-item:hover {
-  background-color: #e2e6ea; /* 懸停時的背景色 */
+  background-color: #D8F3DC; 
 }
 
-/* 主要內容樣式 */
+
+/* 主要內容 */
 main {
-  flex-grow: 1; /* 填充剩餘高度，將頁尾推到底部 */
+  flex-grow: 1;
   max-width: 800px;
   margin: 2rem auto;
   padding: 1rem;
-  z-index: 1; /* 優先於頁尾波浪的層級 */
+  z-index: 1;
 }
-/* 空白區域樣式 */
+
+/* 空白區域 */
 .spacer {
-  height: 100px; /* 控制空白高度 */
+  height: 100px;
 }
+
 .content {
   background-color: white;
   padding: 1.5rem;
@@ -275,10 +292,11 @@ main {
 }
 
 .content h2 {
-  color: #386641; /* 深綠色標題 */
+  color: #008891;
+  font-family: "Noto Serif TC", serif;
+  font-weight: bold;
   margin-bottom: 1rem;
 }
-
 .content ul {
   margin-bottom: 1.5rem;
   padding-left: 1.5rem;
@@ -287,6 +305,53 @@ main {
 .content ul li {
   margin-bottom: 0.5rem;
 }
+/* 通報專線區域樣式 */
+.table-container {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* **標題樣式** */
+.table-container h2 {
+  color: #386641; /* 深綠色標題 */
+  margin-bottom: 1rem;
+}
+
+/* **表格樣式** */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse; /* 移除表格內邊距 */
+}
+
+/* **表格標題（`th`） & 內容（`td`）** */
+.table-container th,
+.table-container td {
+  text-align: center; /*文字水平置中 */
+  vertical-align: middle; /* 文字垂直置中 */
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* **表頭樣式** */
+.table-container th {
+  background-color: #84b3e6; /*表頭背景色 */
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* **隔行背景變色，提升可讀性** */
+.table-container tr:nth-child(even) {
+  background-color: #f9f9f9; /*隔行變灰色 */
+}
+
+/* **懸停效果** */
+.table-container tr:hover {
+  background-color: #dff1ff; /*滑鼠懸停變色 */
+}
+
 
 /* 勾選區樣式 */
 .agreement-form {
@@ -304,7 +369,6 @@ main {
   font-size: 1rem;
   color: #333;
 }
-
 /* 按鈕樣式 */
 #submit-btn {
   background-color: #d6d6d6; /* 禁用時的灰色 */
@@ -326,6 +390,40 @@ main {
 #submit-btn:enabled:hover {
   background-color: #45a049; /* 更深的綠色 */
 }
+/* **統一按鈕樣式** */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #3498db; /* 預設藍色 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* **懸浮時的效果（僅在啟用時生效）** */
+.submit-btn:not(:disabled):hover {
+  background-color: #2980b9; /* 深藍色 */
+  transform: translateY(-2px); /* 微微上升效果 */
+}
+
+/* **禁用狀態** */
+.submit-btn:disabled {
+  background-color: #bdc3c7 !important; /* 禁用時灰色，`!important` 確保不被覆蓋 */
+  cursor: not-allowed;
+  transform: none; /* 禁用時不浮動 */
+  pointer-events: none; /* 禁用時完全無法互動 */
+}
+
+/* **確保禁用狀態時不會有懸浮效果** */
+.submit-btn:disabled:hover {
+  background-color: #bdc3c7 !important; /* 保持灰色 */
+  transform: none; /* 禁用狀態時不允許浮動 */
+}
+
 
 /* 信箱驗證內容樣式 */
 /* 表單樣式 */
@@ -385,7 +483,7 @@ footer {
   z-index: 1; /* 確保文字在波浪上方 */
   padding: 2rem 1rem; /* 增加上下內邊距，防止文字與波浪重疊 */
   text-align: center;
-  color: white; /* 白色文字，與背景區分 */
+  color: black; /* 讓文字變成黑色 */
   font-size: 0.9rem;
 }
 
@@ -422,7 +520,7 @@ footer {
 @media screen and (max-width: 768px) { 
   footer {
     position: relative; /* 確保文字和波浪定位一致 */
-    padding: 3rem 0; /* 增加上下內邊距，讓文字處於波浪圖形內 */
+    padding: 4rem 0; /* 增加上下內邊距，讓文字處於波浪圖形內 */
   }
 
   .footer-content {
@@ -438,7 +536,9 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 235px; /* 固定波浪高度，防止因文字高度影響顯示 */
+    height: auto; /* 固定波浪高度，防止因文字高度影響顯示 */
+    min-height: 280px; /* 設定最低高度，確保完整覆蓋 */
+    max-height: 100%; /* 讓波浪可以根據內容變高 */
     z-index: 0; /* 波浪在背景層 */
     pointer-events: none; /* 禁用波浪圖形的鼠標事件 */
   }
@@ -549,26 +649,30 @@ table caption {
   }
 }
 
+/* 查詢按鈕樣式 */
 .query-btn {
-  background: linear-gradient(135deg, #b3e5d6, #b3d8f5); /* 淡綠到淡藍漸層 */
-  color: #386641; /* 深綠色字體 */
-  font-size: 1rem;
+  background: linear-gradient(135deg, #FFE8B2, #A8E6CF); 
+  color: #2D4A50; 
+  font-size: 1.1rem;
   font-weight: bold;
   padding: 1rem 2rem;
   border: none;
-  border-radius: 5px;
-  text-decoration: none; /* 移除超連結下劃線 */
+  border-radius: 30px; 
+  text-decoration: none;
   display: inline-block;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* 按鈕懸停時 */
 .query-btn:hover {
-  background: linear-gradient(135deg, #a3d5c6, #a3c8e5); /* 懸停時的漸層 */
-  transform: scale(1.05); /* 懸停放大效果 */
+  background: linear-gradient(135deg, #FFE0A0, #9ADBC0); 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+
 
 /* 案件查詢表單樣式（更新驗證碼區域） */
 .query-form {
@@ -657,7 +761,19 @@ table caption {
   background-color: #3e8e41; /* 按下效果 */
   transform: scale(0.98);
 }
+/*禁用狀態*/
+.query-form button:disabled {
+  background-color: #ccc !important; /* 淺灰色代表禁用 */
+  color: #777; /* 文字變淡 */
+  cursor: not-allowed; /* 滑鼠變成禁止符號 */
+  transform: none; /* 禁止縮放效果 */
+}
 
+/* 禁用時不應有懸停效果 */
+.query-form button:disabled:hover {
+  background-color: #ccc !important;
+  transform: none;
+}
 .query-form p {
   margin-top: 1rem;
   text-align: right;
@@ -763,7 +879,7 @@ table caption {
 .compose-form textarea,
 .compose-form button {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -788,17 +904,35 @@ table caption {
 }
 
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 1.7rem; /* 在小螢幕上進一步調整字體大小 */
+  header {
+    padding: 2rem 0;
   }
 
-  nav a, .query-btn {
-    font-size: 1.2rem; /* 在小螢幕上調整字體大小 */
+  header h1 {
+    font-size: 1.5rem;
+    /* 調整字體大小 */
+    margin: 10px 0;
+    /* 減少外邊距 */
+  }
+
+  nav a{
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .query-btn {
+    font-size: 1rem;
+    /* 調整字體大小 */
+    padding: 0.3rem 0.5rem;
+    /* 減少內邊距 */
+    margin: 5px 0;
+    /* 減少外邊距 */
   }
 
   .footer-content {
-    font-size: 0.5rem; /* 調整字體大小 */
-    padding: 0.2rem 0.5rem;
+    padding: 10px;
+    /* 減少內邊距 */
   }
 }
 /* 1999附件樣式 */
@@ -825,15 +959,39 @@ table caption {
   color: #333;
 }
 /* 縣長信箱規範 */
+
+/* **移除 `<ol>` 預設的 1.2.3.** */
 .chinese-list {
-  list-style-type: cjk-ideographic; /* 使用中文標點，如「一、二、三」 */
-  padding-left: 20px; /* 增加左側內邊距，避免標點貼邊 */
-  margin: 1rem 0; /* 增加上下間距 */
+  list-style-type: none; /* 移除自動數字 */
+  counter-reset: section; /* 設定計數器 */
+  padding-left: 0;
 }
 
-.chinese-list li {
-  margin-bottom: 10px; /* 列表項的間距 */
+/* **讓「一、二、三」自動產生** */
+.chinese-list > li {
+  font-size: 1.1rem; /* 適中大小 */
+  font-weight: normal; /* 不要太粗 */
+  margin-top: 15px;
+  counter-increment: section; /* 計數器增加 */
+  position: relative;
+  padding-left: 30px; /* 確保前面「一、二、三」有空間 */
 }
+
+/* **讓大標題前自動加「一、二、三」** */
+.chinese-list > li::before {
+  content: counter(section, cjk-ideographic) "、 "; /* 轉換為中文數字 */
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* **次級列表 1. 2. 3. (讓它往右縮排)** */
+.sub-list {
+  list-style-type: decimal;
+  margin-left: 30px; /* 調整小標的縮排距離 */
+  font-size: 1rem;
+}
+
 /* 高亮樣式 */
 .highlight {
   font-weight: bold; /* 加粗文字 */
@@ -847,6 +1005,7 @@ table caption {
   justify-content: space-around; /* 平分按鈕間距 */
   align-items: center;
   padding: 10px 10px;
+  margin: 20px 0;
   background-color: #f0f8ff; /* 柔和的藍色背景 */
   border-radius: 12px; /* 讓容器更圓潤 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加淡淡的陰影 */
@@ -867,6 +1026,7 @@ table caption {
 .button-link {
   text-decoration: none; /* 移除下劃線 */
   color: inherit; /* 繼承文字顏色 */
+  display: inline-block;
 }
 
 /* 圖標圓形容器 */
@@ -902,15 +1062,45 @@ table caption {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 添加文字陰影 */
 }
 
-/* 響應式設計 */
+
+
+/* 針對行動裝置的媒體查詢 */
 @media (max-width: 768px) {
   .icon-button-section {
-    flex-direction: column; /* 小螢幕垂直排列 */
-    padding: 20px 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每列兩個 */
+    gap: 1rem;
+    padding: 10px;
+    justify-items: center; /* 水平置中 */
   }
 
   .icon-button {
-    margin: 15px 0;
+    width: 45%; /* 調整寬度以適應兩個一列 */
+    margin: 5px; /* 增加間距 */
+    transition: transform 0.2s;
+  }
+
+  .icon-button:hover {
+    transform: scale(1.05);
+  }
+
+  .icon-circle {
+    margin: 10px auto;
+    background-color: #00aaff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-button span {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    text-align: center; /* 文字居中 */
+    word-break: keep-all;
   }
 }
 
@@ -995,47 +1185,125 @@ ul.white-dots {
   padding: 20px;
 }
 
+#typeChartWrapper {
+  height: 560px; /* 高度 */
+}
+
+#typeChart {
+  max-height: 100%; /* 確保 canvas 不超出容器 */
+}
+
 /* 圖表容器樣式 */
 .chart-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
   gap: 2rem;
+  align-items: center;
+  padding: 1rem;
 }
 
 .chart-wrapper {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#monthlyChartWrapper {
+  height: 700px; /* 根據資料量調整高度 */
 }
 
-.chart-wrapper h2 {
-  color: #386641;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-size: 1.2rem;
+
+.chart-wrapper canvas {
+  width: 100%;
+  height: 100% !important; /* 強制撐滿父容器高度 */
+  max-height: unset;       /* 移除 280px 限制 */
 }
+.chart-wrapper h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333; /* 可選：讓標題更清晰 */
+}
+
+
 
 /* 響應式處理 */
 @media (max-width: 768px) {
   .chart-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 單欄顯示 */
+    padding: 0.5rem; /* 減少邊距 */
+    gap: 1rem; /* 降低間距 */
   }
-  
+
   .chart-wrapper {
-    padding: 1rem;
+    padding: 0 1rem; /* 避免內距過大影響佈局 */
+  }
+
+  .chart-wrapper h2 {
+    font-size: 1rem; /* 手機端標題稍微縮小 */
+  }
+
+  .chart-wrapper canvas {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
+@media (max-width: 768px) {
+  #typeChartWrapper {
+    max-width: 100%;
+    padding: 0.5rem;
+    overflow-x: auto; /* 若仍超寬，允許橫向滑動 */
+  }
+
+  #typeChart {
+    max-width: 320px;
+    height: auto;
+  }
+
+  /* 限制圖例區塊的字體大小與不換行 */
+  .chartjs-legend li {
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+  }
+}
+
+.chart-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.chart-selector label {
+  font-weight: bold;
+  color: #386641;
+  font-size: 1rem;
+}
+
+.chart-selector select {
+  padding: 0.5rem 1rem;
+  border: 2px solid #A8E6CF;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 1rem;
+  color: #386641;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-selector select:focus {
+  outline: none;
+  border-color: #52B788;
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.3);
+}
+
 /*公文查詢系統下方聲明 */
 
 /* 聲明文字樣式 */
 .statement-text {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.8; /* 提升文字可讀性 */
-  color: #333; /* 深灰色文字 */
+  color: #386641; /* 深灰色文字 */
   margin: 0; /* 去除默認外邊距 */
   text-align: center; /* 將文字居中對齊 */
 }
@@ -1046,4 +1314,195 @@ ul.white-dots {
   .statement-text {
     font-size: 0.8rem;
   }
+} 
+
+/* **回到頂部按鈕** */
+#top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  display: none; /* 預設隱藏 */
+  background-color: #84b3e6; 
+  color: white;
+  border: none;
+  border-radius: 50%; /* 圓形設計 */
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 陰影讓按鈕不會太平面 */
+  opacity: 0;
+  transform: translateY(50px);
 }
+
+/* **滾動時顯示按鈕** */
+#top-btn.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* **懸停時變色** */
+#top-btn:hover {
+  background-color: #6a9cd4; 
+}
+
+/* **手機端適配** */
+@media screen and (max-width: 768px) {
+  #top-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+    bottom: 20px;
+    right: 15px;
+  }
+}
+/* 信箱自動填寫欄位 */
+.email-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333; /* 深色文字 */
+  margin-bottom: 10px;
+}
+/* 附件說明文字 (小字體 + 灰色) */
+.file-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* 附件上傳容器 */
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 欄位之間的間距 */
+  flex-wrap: wrap; /* 避免畫面太窄時擠在一起 */
+}
+
+/* 附件上傳欄位 (縮小大小) */
+.file-upload-container input[type="file"] {
+  width: 120px; /* 設定固定寬度 */
+  font-size: 0.85rem; /* 字體縮小 */
+  padding: 5px;
+}
+/* 必填標記 */
+.required {
+  color: red;
+  font-weight: bold;
+  margin-right: 4px; /* 讓 * 與文字之間有點距離 */
+}
+
+.address-container {
+  display: flex;
+  align-items: center; /* 垂直置中 */
+  gap: 8px; /* 選單、地址輸入框之間的間距 */
+  flex-wrap: nowrap; /* 保持同一行 */
+}
+
+.fixed-text {
+  white-space: nowrap; 
+}
+
+#township {
+  width: 90px; 
+  font-size: 1rem;
+}
+#township option {
+  font-size: 1rem;  
+}
+/* 意見內容註解 */
+
+.content-note {
+  font-size: 0.85rem; /* 字體較小 */
+  color: #1e5079; 
+  display: block; 
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+
+#case-address {
+  flex-grow: 1; /* 讓輸入框自適應寬度 */
+  min-width: 200px; /* 避免輸入框過小 */
+}
+/* 倒數計時文字樣式 */
+.countdown-timer {
+  font-size: 1rem; 
+  font-weight: bold; 
+  color: #386641; 
+  text-align: center;
+  margin-top: 10px;
+}
+/* 成功訊息樣式 */
+.success-message {
+  background: #e8f5e9; /* 淡綠色背景 */
+  color: #2e7d32; /* 深綠色文字 */
+  font-size: 1rem;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* 讓按鈕提交後消失 */
+.success-message + .submit-btn {
+  display: none;
+}
+/* 成功訊息文字排版 */
+.align-left {
+  text-align: left; 
+}
+
+.align-right {
+  text-align: right; 
+  margin-top: 10px; 
+  font-weight: bold; 
+}
+/* 填寫提示 */
+.form-note {
+  font-size: 0.85rem; 
+  color: #666; 
+  line-height: 1.5; 
+  margin-bottom: 1rem; 
+}
+
+.email-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+  width: 100%; 
+}
+
+.email-input-container input {
+  flex: 3; 
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.send-code-btn {
+  flex: 1; 
+  padding: 6px 8px;
+  font-size: 0.8rem; 
+  white-space: nowrap; 
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed; /* 預設禁用 */
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.send-code-btn:enabled {
+  cursor: pointer;
+  background-color: #45a049;
+}
+
+.send-code-btn:enabled:hover {
+  background-color: #3e8e41;
+}
+

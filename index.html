@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
+    <div class="logo-container">
+      <img src="logo.png" alt="屏東縣政府 Logo" class="logo-img">
+    </div>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
   </head>
+
+  <style>
+    /* 彈跳視窗（Modal）相關樣式 */
+    .modal {
+      display: none; /* 預設隱藏 */
+      position: fixed; /* 固定在視窗上方 */
+      z-index: 9999; /* 保證在最前方 */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; /* 內容若超出視窗，則產生捲軸 */
+      background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto; /* 使區塊在畫面置中 */
+      padding: 2rem 2.5rem;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+      border-radius: 4px;
+      max-height: 80vh; /* 避免 Modal 過高時超出畫面 */
+      overflow-y: auto; /* 內容過多時可捲動 */
+      white-space: normal; /* 預設就會換行 */
+      /* 或者是 white-space: pre-wrap; */
+      word-wrap: break-word; /* 長字自動換行 */
+      border-right: 2px solid rgba(255, 0, 0, 0.1); /* 右邊框 */
+      border-bottom: 2px solid rgba(255, 0, 0, 0.1); /* 下邊框 */
+    }
+    .modal-content h3 {
+      margin-top: 0;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: #333;
+      cursor: pointer;
+    }
+    .close-button:hover {
+      color: #666;
+    }
+  </style>
   <body>
     <!-- 頁首 -->
     <header>
-      <h1>屏東縣政府1999為民服務系統</h1>
+      <h1>屏東縣政府陳情入口整合平台</h1>
+      <!--
       <nav>
         <ul>
           <li><a href="#">首頁</a></li>
@@ -17,7 +68,11 @@
           <li><a href="chart.html">統計圖表</a></li>
           <li><a href="#">聯絡我們</a></li>
         </ul>
-      </nav>
+      </nav> -->
+      <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
     </header>
 
     <!-- 按鈕查詢區 -->
@@ -30,8 +85,8 @@
           縣長信箱
         </button>
         <!-- <button class="query-btn" onclick="location.href='faq.html'">常見問題集</button> -->
-        <button class="query-btn" onclick="location.href='document_query.html'">
-          公文查詢
+        <button class="query-btn" onclick="location.href='chart.html'">
+          陳情案件統計
         </button>
 
         <a
@@ -44,7 +99,7 @@
         </a>
         <!-- 更多服務按鈕 -->
         <div class="dropdown">
-          <button class="query-btn">縣民熱線1999▼</button>
+          <button class="query-btn">1999便民服務專線▼</button>
           <div class="dropdown-menu">
             <button
               class="dropdown-item"
@@ -58,7 +113,7 @@
             >
               案件流程與規範
             </button>
-            <button class="dropdown-item">其他相關通報專線</button>
+            <button class="dropdown-item" onclick="location.href='contact_info.html'">其他相關通報專線</button>
           </div>
         </div>
       </div>
@@ -67,15 +122,27 @@
     <!-- 主要內容 -->
     <main>
       <section class="content">
-        <h2>最新公告</h2>
+        <h2>公告訊息</h2>
         <div id="news-container">
           <!-- 新聞內容將由 JavaScript 動態載入 -->
           <div class="loading">載入中...</div>
         </div>
       </section>
       <!-- 增加空白區域 -->
-    <div class="spacer"></div>
+      <div class="spacer"></div>
     </main>
+
+    <!-- 彈跳視窗 (Modal) 結構 -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <!-- 關閉按鈕 -->
+        <span id="close-modal" class="close-button">&times;</span>
+        <!-- 這裡會動態載入新聞標題與內文 -->
+        <h3 id="modal-title"></h3>
+        <p id="modal-date" class="news-date"></p>
+        <p id="modal-body" class="news-content"></p>
+      </div>
+    </div>
 
     <!-- 頁尾 -->
     <footer>
@@ -91,13 +158,29 @@
           1999便民服務專線（付費專線）：縣境內直撥 1999、外縣市請撥
           08-732-0415，服務時間每日 08:00~22:00
         </p>
-        <a href="https://www.pthg.gov.tw/cp.aspx?n=12BA767FD998D05E" class="footer-link">資安政策</a>
+        <a
+          href="https://www.pthg.gov.tw/cp.aspx?n=12BA767FD998D05E"
+          class="footer-link"
+          >資安政策</a
+        >
         <span>|</span>
-        <a href="https://www.pthg.gov.tw/cp.aspx?n=48DF0A537FFF0FAF" class="footer-link">隱私權政策</a>
+        <a
+          href="https://www.pthg.gov.tw/cp.aspx?n=48DF0A537FFF0FAF"
+          class="footer-link"
+          >隱私權政策</a
+        >
         <span>|</span>
-        <a href="https://www.pthg.gov.tw/cp.aspx?n=F0BADD3C2111A890" class="footer-link">著作權聲明</a>
+        <a
+          href="https://www.pthg.gov.tw/cp.aspx?n=F0BADD3C2111A890"
+          class="footer-link"
+          >著作權聲明</a
+        >
         <span>|</span>
-        <a href="https://www.pthg.gov.tw/cp.aspx?n=71AA0F794E4D8D92" class="footer-link">資料開放宣告</a>
+        <a
+          href="https://www.pthg.gov.tw/cp.aspx?n=71AA0F794E4D8D92"
+          class="footer-link"
+          >資料開放宣告</a
+        >
       </div>
       <svg
         id="wave"
@@ -108,8 +191,8 @@
       >
         <defs>
           <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="rgba(30, 205, 142, 1)" offset="0%"></stop>
-            <stop stop-color="rgba(84, 179, 230, 1)" offset="100%"></stop>
+            <stop stop-color="rgba(255, 221, 148, 1)" offset="0%"></stop>
+            <stop stop-color="rgba(255, 167, 167, 1)" offset="100%"></stop>
           </linearGradient>
         </defs>
         <path
@@ -121,28 +204,50 @@
     </footer>
 
     <script>
-      // 載入最新消息
+      // 載入最新訊息並綁定點擊事件
       async function loadNews() {
         try {
           const response = await fetch("news.json");
           const data = await response.json();
+          data.news.sort((a, b) => a.id - b.id); // 依id排序
           const newsContainer = document.getElementById("news-container");
-    
-          // 清空載入中的提示
+
+          // 清空「載入中...」訊息
           newsContainer.innerHTML = "";
-    
-          // 顯示新聞內容
+
+          // 逐筆建立新聞項目
           data.news.forEach((item) => {
-            // 使用 <a> 作為新聞項目
-            const newsItem = document.createElement("a");
-            newsItem.className = `news-item ${item.important ? "important" : ""}`;
-            newsItem.href = `news-details.html?id=${item.id}`; // 跳轉到詳情頁
+            const newsItem = document.createElement("div");
+            newsItem.className = `news-item ${
+              item.important ? "important" : ""
+            }`;
+            // 塞入簡要資訊
             newsItem.innerHTML = `
               <h3>${item.title}</h3>
               <p class="news-date">發布日期：${item.date}</p>
-              <p class="news-content">${item.summary}</p> <!-- 僅顯示摘要 -->
+              <p class="news-content">
+                <!-- 為了版面美觀，可只顯示前幾行或前幾個字，此處示範保留部分內容 -->
+                ${item.content.substring(0, 30)}... 
+              </p>
             `;
-    
+
+            // 點擊後顯示彈跳視窗的完整內容
+            newsItem.addEventListener("click", () => {
+              // 取得 Modal 相關元素
+              const modal = document.getElementById("modal");
+              const modalTitle = document.getElementById("modal-title");
+              const modalDate = document.getElementById("modal-date");
+              const modalBody = document.getElementById("modal-body");
+
+              // 動態填入內容
+              modalTitle.textContent = item.title;
+              modalDate.textContent = "發布日期：" + item.date;
+              modalBody.textContent = item.content;
+
+              // 顯示 Modal
+              modal.style.display = "block";
+            });
+
             newsContainer.appendChild(newsItem);
           });
         } catch (error) {
@@ -151,10 +256,40 @@
             '<p class="error">載入資料時發生錯誤，請稍後再試。</p>';
         }
       }
-    
-      // 當頁面載入完成時執行載入新聞
-      document.addEventListener("DOMContentLoaded", loadNews);
+
+      // 註冊關閉 Modal 的事件
+      function initModalClose() {
+        const modal = document.getElementById("modal");
+        const closeModalBtn = document.getElementById("close-modal");
+
+        // 點擊「X」關閉
+        closeModalBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        // 點擊背景區域也關閉
+        window.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      }
+
+      // 當頁面載入完成時執行
+      document.addEventListener("DOMContentLoaded", () => {
+        loadNews();
+        initModalClose();
+      });
+      
     </script>
-    
+    <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
   </body>
 </html>

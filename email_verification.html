@@ -1,50 +1,80 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳情入口整合平台</title>
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏東縣政府陳情入口整合平台</title>
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="scripts.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- 頁首 -->
     <header>
-        <h1>信箱驗證</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="index.html">最新消息</a></li>
-                <li><a href="chart.html">統計圖表</a></li>
-                <li><a href="#">聯絡我們</a></li>
-            </ul>
-        </nav>
+      <h1>信箱驗證</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">返回首頁</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- 主要內容 -->
     <main>
-        <section class="content">
-            <h2>請輸入您的電子信箱</h2>
-            <p>我們將發送驗證碼到您的信箱，請留意查收。</p>
-            <form action="process_verification.php" method="post" class="verification-form">
-                <!-- 電子信箱輸入 -->
-                <label for="email">電子信箱：</label>
-                <input type="email" id="email" name="email" placeholder="請輸入您的信箱" required>
-                <button type="button" id="send-code-btn" class="submit-btn">發送驗證碼</button>
+      <section class="content">
+        <h2>請輸入您的電子信箱</h2>
+        <p>我們將發送驗證碼到您的信箱，請留意查收。</p>
+        <form
+          action="process_verification.php"
+          method="post"
+          class="verification-form"
+        >
+          <!-- 電子信箱輸入 -->
+          <label for="email">電子信箱：</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="請輸入您的信箱"
+            required
+          />
+          <button type="button" id="send-code-btn" class="submit-btn">
+            發送驗證碼
+          </button>
 
-                <!-- 驗證碼輸入 -->
-                <div class="verification-code-section">
-                    <label for="verification-code">驗證碼：</label>
-                    <input type="text" id="verification-code" name="verification_code" placeholder="請輸入驗證碼" disabled required>
-                </div>
+          <!-- 驗證碼輸入 -->
+          <div class="verification-code-section">
+            <label for="verification-code">驗證碼：</label>
+            <input
+              type="text"
+              id="verification-code"
+              name="verification_code"
+              placeholder="請輸入驗證碼"
+              disabled
+              required
+            />
+          </div>
 
-                <!-- 確定按鈕 -->
-                <button type="button" id="confirm-btn" class="submit-btn" onclick="location.href='compose_mail.html'">確定</button>
-
-            </form>
-        </section>
+          <!-- 確定按鈕 -->
+          <button
+            type="button"
+            id="confirm-btn"
+            class="submit-btn"
+            onclick="location.href='compose_mail.html'"
+          >
+            確定
+          </button>
+        </form>
+      </section>
+      <script>
+        document.getElementById("confirm-btn").addEventListener("click", function () {
+          const email = document.getElementById("email").value;
+          if (email) {
+            localStorage.setItem("verifiedEmail", email); // 存儲已驗證信箱
+            window.location.href = "compose_mail.html"; // 跳轉至撰寫信件頁面
+          }
+        });
+      </script>
+      
     </main>
-
-
-</body>
+  </body>
 </html>

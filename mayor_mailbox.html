@@ -1,62 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳情入口整合平台</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏東縣政府陳情入口整合平台</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
     <!-- 頁首 -->
     <header>
-        <h1>縣長信箱</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="index.html">最新消息</a></li>
-                <li><a href="chart.html">統計圖表</a></li>
-                <li><a href="#">聯絡我們</a></li>
-            </ul>
-        </nav>
+      <h1>縣長信箱</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">返回首頁</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- 主要內容 -->
     <main>
-        <section class="content">
-            <h2>縣長信箱</h2>
-            <p>親愛的縣民，您好：</p>
-            <p>歡迎使用屏東縣政府1999為民服務系統，請您先詳讀下列使用說明後再登錄案件：</p>
-            <ol class="chinese-list">
-                <li>登錄案件時請載明具體事項、姓名及聯絡方式；如未具名及聯絡方式且無具體事由，本府得逕為不受理。</li>
-                <li>陳情案件以真實案件為限，與縣政無關之建議，情緒批評、惡意攻擊、謾罵等，恕不服務。</li>
-                <li>經查證所留姓名或住址、聯絡電話、電子郵件位址屬偽冒、匿名虛報不實者，依「行政程序法」、「行政院暨所屬各機關處理人民陳情案件要點」等之規定，得不予處理。</li>
-                <li>如未填具真實姓名或相關資料，因而引發之法律責任，當事人應負全責。</li>
-                <li>您所填寫的資料，將依據個人資料保護法及相關規定蒐集、處理及合理利用，請您確認並詳閱系統首頁「隱私權政策」及「資訊安全政策」。</li>
-                <li>案件送出後，為確認您的E-mail無登錄錯誤、未遭他人冒用及後續可收到回復，請盡速至個人信箱點選確認信。</li>
-                <li>您所填寫的資料，依據個人資料保護法及相關規定，不對外公開，僅供承辦單位業務上聯繫，回復及本府分析使用；另主旨、內容等非個人資料欄位，後續提供縣政分析，作為施政參考。</li>
-                <span class="highlight"><li>交通違規案件舉發請至屏東縣政府警察局交通隊「交通違規舉發網站」填報。 有關貪瀆不法案件，請向本府政風單位檢舉，政風檢舉專線08-7335620，檢舉信箱doge@ems.pthg.gov.tw</li></span>
+      <section class="content">
+        <h2>縣長信箱</h2>
+        <p>親愛的縣民，您好：</p>
+        <p>
+          歡迎使用屏東縣政府陳情入口整合平台，為維護行政資源有效運用及保障您與他人的權益，請您先詳閱下列說明事項後再登錄案件：
+        </p>
+        <ol class="chinese-list">
+          <li>
+            <h4 class="main-title">案件登錄重要提醒</h4>
+            <ol class="sub-list">
+              <li>依行政程序法第168條之規定，人民對於行政興革之建議、行政法令之查詢、行政違失之舉發或行政上權益之維護，得向主管機關陳情。為迅速處理您的建議及反映事項，請明確描述案件的事由，包括涉及的具體事項、地點或對象，確保內容完整且詳實。</li>
+              <li>如來信內容屬商業廣告信函、政治性議題、不具建設性之批評、個人情緒批評、惡意攻訐謾罵及與縣政無關之意見，本府將不予處理。</li>
+              <li>請您提供正確的個人資料(包含真實姓名、聯絡電話、地址及電子郵件)，以利處理過程中聯繫或回覆。</li>
+              <li>經查證所留姓名或住址、聯絡電話、電子郵件屬偽冒、匿名虛報不實者，本府得不予處理。因而引發之法律責任，當事人應負全責。</li>
+              <li>如您的陳情內容有兩件以上，請儘量分別寄送，以利權責單位分別處理。</li>
+              <li>電子郵件驗證：為確認您的電子郵件正確、未遭他人冒用及後續可收到回覆，請先輸入電子郵件取得信件驗證碼，待驗證完成，即可進行案件登錄。</li>
+              <li>案件通知信將於案件分辦予主政單位後寄送，後續案件進度可依信件連結鍵入相關資訊後查詢。</li>
+              <li>案件受理後，將透過電子郵件通知案件編號及驗證碼。</li>
+              <li>您也可透過【案件查詢】功能，輸入受理通知信內的案件編號與密碼查詢進度。</li>
             </ol>
+          </li>
+          <li>
+            <h4 class="main-title">個資保護</h4>
+            <ol class="sub-list">
+              <li>本平台資料將依個人資料保護法及相關規定蒐集、處理及合理利用，請您確認並詳閱本府官網首頁「隱私權及資訊安全政策」。</li>
+              <li>您所填寫的資料，依據個人資料保護法及相關規定，不對外公開，僅供承辦單位業務上聯繫，回復及本府分析使用；另主旨、內容等非個人資料欄位，後續提供縣政分析，作為施政參考。</li>
+            </ol>
+          </li>
+          <li>
+            <h4 class="main-title">其他案件通報管道</h4>
+            <ol class="sub-list">
+              <li>交通違規案件舉發請至本府警察局交通違規線上檢舉專區(網址：https://trafficmailbox.ptpolice.gov.tw/)填報，或撥打110報案。</li>
+              <li>有關貪瀆不法案件，請向本府政風單位檢舉，政風檢舉專線08-7335620，檢舉信箱doge@ems.pthg.gov.tw。</li>
+              <li>環安專線：0800-066666、08-7351928。</li>
+              <li>家庭暴力及性侵害求助與通報，您可撥打110報警及113保護專線協助，也可以利用「關懷e起來」進行線上通報（https://ecare.mohw.gov.tw/）。</li>
+              <li>如為緊急案件或犯罪事件，請撥打110。火警及救難事件，請撥打119。</li>
+              <li>國稅相關業務(如:漏開發票、營業稅、所得稅、貨物稅及勞務稅(俗稱奢侈稅)、遺贈稅…等)問題，請逕向所屬國稅局洽詢，申訴信箱網站:財政部南區國稅局-民眾申訴陳情信箱（ https://www.etax.nat.gov.tw/etwmain/etw600w/d01/am ）。</li>
+            </ol>
+          </li>
+          <!-- 
+          <span class="highlight"
+            ><li>
+              交通違規案件舉發請至屏東縣政府警察局交通隊「交通違規舉發網站」填報。
+              有關貪瀆不法案件，請向本府政風單位檢舉，政風檢舉專線08-7335620，檢舉信箱doge@ems.pthg.gov.tw
+            </li></span
+          >-->
+        </ol>
 
-            <!-- 勾選並同意區 -->
-            <form action="email_verification.html" method="get" class="agreement-form">
-                <div class="checkbox-container">
-                    <input type="checkbox" id="agreement" name="agreement">
-                    <label for="agreement">我已了解並同意上述條款。</label>
-                </div>
-                <button type="submit" id="submit-btn" disabled>開始登錄案件</button>
-            </form>
-        </section>
+        <!-- 勾選並同意區 -->
+        <form
+          action="email_verification.html"
+          method="get"
+          class="agreement-form"
+        >
+          <div class="checkbox-container">
+            <input type="checkbox" id="agreement" name="agreement" />
+            <label for="agreement">我已了解並同意上述條款。</label>
+          </div>
+          <button type="submit" id="submit-btn" disabled>開始登錄案件</button>
+        </form>
+      </section>
     </main>
 
-
     <script>
-        // 啟用按鈕的功能
-        const checkbox = document.getElementById('agreement');
-        const submitButton = document.getElementById('submit-btn');
+      // 啟用按鈕的功能
+      const checkbox = document.getElementById("agreement");
+      const submitButton = document.getElementById("submit-btn");
 
-        checkbox.addEventListener('change', () => {
-            submitButton.disabled = !checkbox.checked;
-        });
+      checkbox.addEventListener("change", () => {
+        submitButton.disabled = !checkbox.checked;
+      });
     </script>
-</body>
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  </body>
 </html>

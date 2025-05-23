@@ -1,97 +1,117 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳情入口整合平台</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏東縣政府陳情入口整合平台</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- 頁首 -->
     <header>
-        <h1>1999案件流程與規範</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="index.html">最新消息</a></li>
-                <li><a href="chart.html">統計圖表</a></li>
-                <li><a href="#">聯絡我們</a></li>
-            </ul>
-        </nav>
+      <h1>人民陳情案件處理流程說明</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">返回首頁</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- 主要內容 -->
     <main>
-        <section class="content">
-            <h2>案件登錄</h2>
-            <ul>
-                <section class="icon-button-section">
-                    <!-- 電話錄案 -->
-                    <div class="icon-button">
-                      <a href="case_query.html" class="button-link">
-                        <div class="icon-circle">
-                          <i class="fas fa-phone"></i>
-                        </div>
-                        <span>電話錄案</span>
-                      </a>
-                    </div>
-                
-                    <!-- 人民陳情 -->
-                    <div class="icon-button">
-                      <div class="icon-circle">
-                        <i class="fas fa-envelope"></i>
-                      </div>
-                      <span>人民陳情</span>
-                    </div>
-                
-                    <!-- 縣長信箱 -->
-                    <div class="icon-button">
-                      <a href="mayor_mailbox.html" class="button-link">
-                        <div class="icon-circle">
-                          <i class="fas fa-desktop"></i>
-                        </div>
-                        <span>縣長信箱</span>
-                      </a>
-                    </div>
-                
-                    <!-- 鄉親有約 -->
-                    <div class="icon-button">
-                      <div class="icon-circle">
-                        <i class="fas fa-coffee"></i>
-                      </div>
-                      <span>鄉親有約</span>
-                    </div>
-                  </section>
-                
-                  <!-- 引入 FontAwesome 圖標 -->
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" defer></script>
-                <li>本府受理民眾陳情案件來源管道包括有縣長信箱(電子郵件)、紙本來信、1999電話錄案及鄉親有約等 ，由於人民陳情案攸關民眾權益甚鉅，本府採以案列管方式，對於逾期未處理之案件，每週開具催辦單進行稽催，至結案為止，人民陳情案件除法令另訂處理期限外，其處理期限如下：
-                <ul class="white-dots">
-                    <li>紙本來文陳情:六工作日。</li>
-                    <li>電子文件、縣民時間、電話錄案(陳情類別)，收件列管者:四工作日。</li>
-                    <li>電話錄案(諮詢類別):四小時，且不可辦理展期。</li>
-                </ul>
-            </li>
-                <li>對於案情複雜無法如期辦結之案件，行政暨研考處得主動邀集承辦人說明，協力克服困難設法解決，以降低民怨。</li>
-            </ul>
-            <img src="陳情案件.jpg" alt="陳情案件" class="responsive-img">
-            <style>
-                .responsive-img {
-                    max-width: 100%; /* 圖片寬度不超過父容器 */
-                    height: auto;    /* 保持圖片的長寬比 */
-                }
-                </style>
+      <section class="content">
+        <h2>案件受理</h2>
+        <ul>
+          <section class="icon-button-section">
+            <!-- 電話錄案 -->
+            <div class="icon-button">
+              <a href="case_query.html" class="button-link">
+                <div class="icon-circle">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <span>電話錄案</span>
+              </a>
+            </div>
 
-        </section>
-        <h4>相關檔案</h4>
+            <!-- 人民陳情 -->
+            <div class="icon-button">
+              <div class="icon-circle">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span>人民陳情</span>
+            </div>
 
-        <!-- 在新標籤中打開 PDF -->
-            <a href="屏東縣政府暨所屬機關處理人民陳情案件作業規範.pdf" target="_blank" class="attachment-btn">
-            <i class="fas fa-download"></i> 屏東縣政府暨所屬機關處理人民陳情案件作業規範
+            <!-- 縣長信箱 -->
+            <div class="icon-button">
+              <a href="mayor_mailbox.html" class="button-link">
+                <div class="icon-circle">
+                  <i class="fas fa-desktop"></i>
+                </div>
+                <span>縣長信箱</span>
+              </a>
+            </div>
+
+            <!-- 鄉親有約 -->
+            <a href="https://www.pthg.gov.tw/planra/cp.aspx?n=4EB196070FEF07A6" target="_blank" class="button-link">
+              <div class="icon-button">
+                <div class="icon-circle">
+                  <i class="fas fa-coffee"></i>
+                </div>
+                <span>鄉親有約</span>
+              </div>
             </a>
+          </section>
+          
+
+          <!-- 引入 FontAwesome 圖標 -->
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+            defer
+          ></script>
+          <li>
+            本府受理民眾陳情案件來源管道包括有縣長信箱(電子郵件)、紙本來信、1999電話錄案及鄉親有約等
+            ，由於人民陳情案攸關民眾權益甚鉅，本府採以案列管方式，對於逾期未處理之案件，每週開具催辦單進行稽催，至結案為止，人民陳情案件除法令另訂處理期限外，其處理期限如下：
+            <ul class="white-dots">
+              <li>紙本來文陳情:六工作日。</li>
+              <li>
+                電子文件、縣民時間、電話錄案(陳情類別)，收件列管者:四工作日。
+              </li>
+              <li>電話錄案(諮詢類別):四小時，且不可辦理展期。</li>
+            </ul>
+          </li>
+          <li>
+            對於案情複雜無法如期辦結之案件，行政暨研考處得主動邀集承辦人說明，協力克服困難設法解決，以降低民怨。
+          </li>
+        </ul>
+        <img src="陳情案件.png" alt="陳情案件" class="responsive-img" />
+        <style>
+          .responsive-img {
+            max-width: 100%; /* 圖片寬度不超過父容器 */
+            height: auto; /* 保持圖片的長寬比 */
+          }
+        </style>
+      </section>
+      
+
+      <!-- 在新分頁開啟網站 -->
+<a href="https://ptlaw.pthg.gov.tw/LawContent.aspx?id=GL000081" target="_blank" class="attachment-btn">
+  <i class="fas fa-external-link-alt"></i>
+  屏東縣政府暨所屬機關處理人民陳情案件作業規範
+</a>
+
     </main>
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
 
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-</body>
+  </body>
 </html>
