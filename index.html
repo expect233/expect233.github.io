@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
+    <div class="logo-container">
+      <img src="logo.png" alt="屏東縣政府 Logo" class="logo-img">
+    </div>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
   </head>
 
   <style>
@@ -55,14 +60,19 @@
     <!-- 頁首 -->
     <header>
       <h1>屏東縣政府陳情入口整合平台</h1>
+      <!--
       <nav>
         <ul>
           <li><a href="#">首頁</a></li>
-          <!-- <li><a href="#">最新消息</a></li> -->
+          <li><a href="#">最新消息</a></li>
           <li><a href="chart.html">統計圖表</a></li>
           <li><a href="#">聯絡我們</a></li>
         </ul>
-      </nav>
+      </nav> -->
+      <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
     </header>
 
     <!-- 按鈕查詢區 -->
@@ -75,8 +85,8 @@
           縣長信箱
         </button>
         <!-- <button class="query-btn" onclick="location.href='faq.html'">常見問題集</button> -->
-        <button class="query-btn" onclick="location.href='document_query.html'">
-          公文查詢
+        <button class="query-btn" onclick="location.href='chart.html'">
+          陳情案件統計
         </button>
 
         <a
@@ -103,7 +113,7 @@
             >
               案件流程與規範
             </button>
-            <button class="dropdown-item">其他相關通報專線</button>
+            <button class="dropdown-item" onclick="location.href='contact_info.html'">其他相關通報專線</button>
           </div>
         </div>
       </div>
@@ -181,8 +191,8 @@
       >
         <defs>
           <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-            <stop stop-color="rgba(30, 205, 142, 1)" offset="0%"></stop>
-            <stop stop-color="rgba(84, 179, 230, 1)" offset="100%"></stop>
+            <stop stop-color="rgba(255, 221, 148, 1)" offset="0%"></stop>
+            <stop stop-color="rgba(255, 167, 167, 1)" offset="100%"></stop>
           </linearGradient>
         </defs>
         <path
@@ -270,6 +280,16 @@
         loadNews();
         initModalClose();
       });
+      
     </script>
+    <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
   </body>
 </html>

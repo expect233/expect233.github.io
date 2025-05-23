@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>案件查詢</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
     <style>
       /* **統一區塊大小 & 版面美化** */
       .query-container {
@@ -104,9 +105,7 @@
       <h1>案件查詢</h1>
       <nav>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="chart.html">統計圖表</a></li>
-          <li><a href="#">聯絡我們</a></li>
+          <li><a href="index.html">返回首頁</a></li>
         </ul>
       </nav>
     </header>
@@ -114,8 +113,7 @@
     <main>
       <section class="content">
         <h2>案件進度查詢</h2>
-
-        <!-- **讓兩個查詢區塊左右對齊** -->
+    
         <div class="query-container">
           
           <!-- 1999 案件進度查詢 -->
@@ -124,69 +122,175 @@
             <form action="process_1999_query.php" method="post" class="query-form" id="form-1999">
               <label for="phone_number">手機號碼：</label>
               <input type="tel" id="phone_number" name="phone_number" placeholder="請輸入手機號碼" required />
-
+    
               <label for="case_number_1999">案件編號：</label>
               <input type="text" id="case_number_1999" name="case_number_1999" placeholder="請輸入案件編號" required />
-
+    
               <button type="submit" class="submit-btn" id="query-btn-1999" disabled>查詢</button>
             </form>
           </div>
-
+    
           <!-- 縣長信箱案件進度查詢 -->
           <div class="query-section">
             <h3>縣長信箱案件進度查詢</h3>
             <form action="process_mayor_query.php" method="post" class="query-form" id="form-mayor">
               <label for="case_number_mayor">案件編號：</label>
               <input type="text" id="case_number_mayor" name="case_number_mayor" placeholder="請輸入案件編號" required />
-
+    
               <label for="email">電子郵件：</label>
-              <input type="email" id="email" name="email" placeholder="請輸入電子郵件" required />
-
-              <label for="captcha">驗證碼：</label>
-              <div class="captcha-container">
-                <input type="text" id="captcha" name="captcha" placeholder="請輸入驗證碼" required />
-                <img src="captcha_image.php" alt="驗證碼圖片" />
+              <div class="email-input-container">
+                <input type="email" id="email" name="email" placeholder="請輸入電子郵件" required />
+                
               </div>
-
+              <p id="email-message" class="email-message"></p> <!-- 顯示發送成功訊息 -->
+    
+              <label for="email_code">驗證碼：</label>
+              <input type="text" id="email_code" name="email_code" placeholder="請輸入驗證碼" required />
+    
               <button type="submit" class="submit-btn" id="query-btn-mayor" disabled>查詢</button>
             </form>
           </div>
-
         </div> <!-- 結束 .query-container -->
-
+    
       </section>
     </main>
-
+    
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // 1999 案件查詢按鈕
+        // 1999 案件查詢
         const phoneInput = document.getElementById("phone_number");
         const caseNumber1999Input = document.getElementById("case_number_1999");
         const queryButton1999 = document.getElementById("query-btn-1999");
-
+    
         function validate1999Form() {
           queryButton1999.disabled = !(phoneInput.value.trim() !== "" && caseNumber1999Input.value.trim() !== "");
         }
-
+    
         phoneInput.addEventListener("input", validate1999Form);
         caseNumber1999Input.addEventListener("input", validate1999Form);
         validate1999Form();
-
-        // 縣長信箱案件查詢按鈕
+    
+        // 縣長信箱案件查詢
         const caseNumberMayorInput = document.getElementById("case_number_mayor");
         const emailInput = document.getElementById("email");
-        const captchaInput = document.getElementById("captcha");
+        const sendCodeBtn = document.getElementById("send-code-btn");
+        const emailCodeInput = document.getElementById("email_code");
         const queryButtonMayor = document.getElementById("query-btn-mayor");
-
+        const emailMessage = document.getElementById("email-message");
+        let verificationCode = "";
+    
         function validateMayorForm() {
-          queryButtonMayor.disabled = !(caseNumberMayorInput.value.trim() !== "" && emailInput.value.trim() !== "" && captchaInput.value.trim() !== "");
+          queryButtonMayor.disabled = !(caseNumberMayorInput.value.trim() !== "" && emailCodeInput.value.trim() !== verificationCode);
         }
 
         caseNumberMayorInput.addEventListener("input", validateMayorForm);
-        emailInput.addEventListener("input", validateMayorForm);
-        captchaInput.addEventListener("input", validateMayorForm);
-        validateMayorForm();
+        emailInput.addEventListener("input", function () {
+          validateMayorForm();
+          sendCodeBtn.disabled = emailInput.value.trim() === ""; // 沒輸入 Email 時，禁用發送驗證碼按鈕
+        });
+    
+        emailCodeInput.addEventListener("input", validateMayorForm);
+    
+        // **發送驗證碼功能**
+        sendCodeBtn.addEventListener("click", function () {
+          const email = emailInput.value.trim();
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 基本 Email 格式驗證
+    
+          // **先清空舊的錯誤訊息**
+          emailMessage.innerHTML = "";
+    
+          if (!email) {
+            emailMessage.innerHTML = `<span style="color: red;">請輸入電子郵件！</span>`;
+            return;
+          }
+    
+          if (!email.includes("@") || email.startsWith("@") || email.endsWith("@")) {
+          emailMessage.innerHTML = `<span style="color: red;">請輸入有效的電子郵件地址！</span>`;
+          return;
+          }
+
+    
+          // **避免重複顯示發送成功訊息**
+          if (emailMessage.innerHTML.includes("驗證碼已發送至您的電子郵件")) return;
+    
+          // 產生 6 位數驗證碼
+          verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+          console.log("發送的驗證碼：", verificationCode);
+    
+          // 顯示驗證碼發送成功訊息
+          emailMessage.style.color = "green";
+          emailMessage.style.fontSize = "0.9rem";
+          emailMessage.style.marginTop = "5px";
+          emailMessage.innerHTML = `驗證碼已發送至您的電子郵件，請查收！`; // **換行顯示**
+    
+          emailCodeInput.disabled = false; // **開啟驗證碼輸入欄位**
+        });
       });
+
+
+      //模擬查詢結果(未連接API)//電子郵件查詢
+      document.addEventListener("DOMContentLoaded", function () {
+    const mayorForm = document.getElementById("form-mayor");
+    const queryButtonMayor = document.getElementById("query-btn-mayor");
+
+    // 改用 JavaScript 處理表單提交
+    mayorForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // 阻止表單真正提交
+        console.log("查詢按鈕被點擊，開始驗證...");
+
+        const caseNumber = document.getElementById("case_number_mayor").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const emailCode = document.getElementById("email_code").value.trim();
+
+        // **檢查欄位是否填寫**
+        if (caseNumber === "" || email === "" || emailCode === "") {
+            alert("請填寫所有欄位！");
+            return;
+        }
+
+        // 成功後前端跳轉到 `query_result.html`
+        console.log("驗證成功，跳轉到結果頁面");
+        window.location.href = "./query_result.html?case_number=" + encodeURIComponent(caseNumber) +"&email_Code=" + encodeURIComponent(emailCode);
+    });
+    //模擬查詢結果(未連接API)//手機號碼查詢
+    const phoneForm = document.getElementById("form-1999");
+    const queryButtonPhone = document.getElementById("query-btn-1999");
+    // 改用 JavaScript 處理表單提交
+    phoneForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // 阻止表單真正提交
+        console.log("查詢按鈕被點擊，開始驗證...");
+    const phoneForm = document.getElementById("form-1999");
+    const queryButtonPhone = document.getElementById("query-btn-1999");
+
+    
+
+        const caseNumber = document.getElementById("case_number_1999").value.trim();
+        const phonenumber = document.getElementById("phone_number").value.trim();
+
+        // **檢查欄位是否填寫**
+        if (caseNumber === "" || phonenumber === "" ) {
+            alert("請填寫所有欄位！");
+            return;
+        }
+
+        // 成功後前端跳轉到 `query_result_phone.html`
+        console.log("驗證成功，跳轉到結果頁面");
+        window.location.href = "./query_result_phone.html?case_number=" + encodeURIComponent(caseNumber) +"&phone_number=" + encodeURIComponent(phonenumber);
+    });
+});
+
     </script>
+    
+    
+    
+    
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   </body>
 </html>

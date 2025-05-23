@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
   </head>
   <body>
     <!-- 頁首 -->
@@ -12,10 +13,7 @@
       <h1>縣長信箱</h1>
       <nav>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <!-- <li><a href="index.html">最新消息</a></li> -->
-          <li><a href="chart.html">統計圖表</a></li>
-          <li><a href="#">聯絡我們</a></li>
+          <li><a href="index.html">返回首頁</a></li>
         </ul>
       </nav>
     </header>
@@ -53,11 +51,12 @@
           <li>
             <h4 class="main-title">其他案件通報管道</h4>
             <ol class="sub-list">
-              <li>交通違規案件舉發請至本府警察局交通隊「交通違規舉發網站」填報。</li>
+              <li>交通違規案件舉發請至本府警察局交通違規線上檢舉專區(網址：https://trafficmailbox.ptpolice.gov.tw/)填報，或撥打110報案。</li>
               <li>有關貪瀆不法案件，請向本府政風單位檢舉，政風檢舉專線08-7335620，檢舉信箱doge@ems.pthg.gov.tw。</li>
               <li>環安專線：0800-066666、08-7351928。</li>
               <li>家庭暴力及性侵害求助與通報，您可撥打110報警及113保護專線協助，也可以利用「關懷e起來」進行線上通報（https://ecare.mohw.gov.tw/）。</li>
               <li>如為緊急案件或犯罪事件，請撥打110。火警及救難事件，請撥打119。</li>
+              <li>國稅相關業務(如:漏開發票、營業稅、所得稅、貨物稅及勞務稅(俗稱奢侈稅)、遺贈稅…等)問題，請逕向所屬國稅局洽詢，申訴信箱網站:財政部南區國稅局-民眾申訴陳情信箱（ https://www.etax.nat.gov.tw/etwmain/etw600w/d01/am ）。</li>
             </ol>
           </li>
           <!-- 
@@ -93,5 +92,13 @@
         submitButton.disabled = !checkbox.checked;
       });
     </script>
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   </body>
 </html>

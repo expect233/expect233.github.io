@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>屏東縣政府陳情入口整合平台</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <!-- 頁首 -->
+    <header>
+      <h1>案件查詢結果</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">返回首頁</a></li>
+        </ul>
+      </nav>
+    </header>
+
+<head>
+    <meta charset="UTF-8">
+    <title>案件查詢結果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #386641;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            text-align: right;
+            font-weight: bold;
+        }
+        td {
+            text-align: left;
+        }
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #386641;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>案件查詢結果</h2>
+    <table>
+        <tr>
+            <th>案件編號</th>
+            <td id="case-number"></td>
+        </tr>
+        <tr>
+            <th>驗證碼</th>
+            <td id="email-Code"></td>
+        </tr>
+        <tr>
+            <th>陳情日期</th>
+            <td>113/05/22</td>
+        </tr>
+        <tr>
+            <th>陳情人</th>
+            <td>吳小姐</td>
+        </tr>
+        <tr>
+            <th>主旨</th>
+            <td>測試縣長信箱</td>
+        </tr>
+        <tr>
+            <th>陳情內容</th>
+            <td>電子郵件查詢測試</td>
+        </tr>
+        <tr>
+            <th>承辦局處</th>
+            <td>屏東縣政府-行政暨研考處</td>
+        </tr>
+        <tr>
+            <th>承辦人</th>
+            <td>張先生</td>
+        </tr>
+        <tr>
+            <th>承辦人聯絡電話</th>
+            <td>08-1234567</td>
+        </tr>
+        <tr>
+            <th>目前進度</th>
+            <td>已結案</td>
+        </tr>
+        <tr>
+            <th>單位回覆內容</th>
+            <td>案件已處理完成，謝謝您的來信。</td>
+        </tr>
+    </table>
+    <a href="case_query.html" class="back-btn">回上一頁</a>
+</div>
+
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // 取得編號參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const caseNumber = urlParams.get("case_number");
+
+
+    if (caseNumber) {
+      document.getElementById("case-number").textContent = caseNumber;
+    } else {
+      document.getElementById("case-number").textContent = "未提供";
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // 取得驗證碼參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailCode = urlParams.get("email_Code");
+
+    if (emailCode) {
+      document.getElementById("email-Code").textContent = emailCode;
+    } else {
+      document.getElementById("email-Code").textContent = "未提供";
+    }
+  });
+</script>
+        <!-- 回到頂部按鈕 -->
+        <button id="top-btn" onclick="scrollToTop()">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</body>
+</html>

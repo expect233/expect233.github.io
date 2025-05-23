@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
   </head>
   <body>
     <!-- 頁首 -->
@@ -12,10 +13,7 @@
       <h1>撰寫信件</h1>
       <nav>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <!-- <li><a href="index.html">最新消息</a></li> -->
-          <li><a href="chart.html">統計圖表</a></li>
-          <li><a href="#">聯絡我們</a></li>
+          <li><a href="index.html">返回首頁</a></li>
         </ul>
       </nav>
     </header>
@@ -23,99 +21,314 @@
     <!-- 主要內容 -->
     <main>
       <section class="content">
+        
+        <p id="countdown-timer" class="countdown-timer">填寫時間剩餘：30:00</p>
         <h2>請填寫以下資訊</h2>
-        <form
-          action="submit_mail.php"
-          method="post"
-          enctype="multipart/form-data"
-          class="compose-form"
-        >
-          <!-- Email -->
+        <p class="form-note">
+          ※ 標註「*」號為必填欄位 <br>
+          提醒您：因資訊安全考量，於網頁輸入文字時，如需使用引號、標註，建議儘量使用「」『』、，。；：？！（）請避免輸入 &lt; &gt; % ' 等符號，感謝您的配合。
+        </p>
+        
+        <form action="process_mail.php" method="post" enctype="multipart/form-data" class="compose-form">
+
+        <!-- Email -->
           <label for="email">電子信箱：</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="請輸入您的電子信箱"
-            required
-          />
+          <p id="email-display" class="email-text"></p>
+          <input type="hidden" id="email" name="email">
+
+
 
           <!-- 聯絡姓名 -->
-          <label for="name">聯絡姓名：</label>
+          <label for="name"><span class="required">*</span> 聯絡姓名：</label>
           <input
             type="text"
             id="name"
             name="name"
             placeholder="請輸入您的姓名"
-            required
+            
           />
 
           <!-- 聯絡電話 -->
-          <label for="phone">聯絡電話：</label>
+          <label for="phone"><span class="required">*</span>聯絡電話：</label>
           <input
             type="tel"
             id="phone"
             name="phone"
             placeholder="請輸入您的聯絡電話"
-            required
+            
           />
 
           <!-- 通訊地址 -->
-          <label for="address">通訊地址：</label>
+          <label for="address"><span class="required">*</span>通訊地址：</label>
           <input
             type="text"
             id="address"
             name="address"
             placeholder="請輸入您的通訊地址"
-            required
+            
           />
 
           <!-- 案件地址 -->
-          <label for="case-address">案件地址：</label>
-          <input
-            type="text"
-            id="case-address"
-            name="case_address"
-            placeholder="請輸入案件地址"
-          />
+          <label for="township">案件地址：</label>
+<div class="address-container">
+  <span class="fixed-text">屏東縣</span>
+  <select id="township" name="township">
+    <option value="">請選擇</option>
+    <option value="屏東市">屏東市</option>
+    <option value="潮州鎮">潮州鎮</option>
+    <option value="東港鎮">東港鎮</option>
+    <option value="恆春鎮">恆春鎮</option>
+    <option value="萬丹鄉">萬丹鄉</option>
+    <option value="長治鄉">長治鄉</option>
+    <option value="麟洛鄉">麟洛鄉</option>
+    <option value="九如鄉">九如鄉</option>
+    <option value="里港鄉">里港鄉</option>
+    <option value="鹽埔鄉">鹽埔鄉</option>
+    <option value="高樹鄉">高樹鄉</option>
+    <option value="萬巒鄉">萬巒鄉</option>
+    <option value="內埔鄉">內埔鄉</option>
+    <option value="竹田鄉">竹田鄉</option>
+    <option value="新埤鄉">新埤鄉</option>
+    <option value="枋寮鄉">枋寮鄉</option>
+    <option value="新園鄉">新園鄉</option>
+    <option value="崁頂鄉">崁頂鄉</option>
+    <option value="林邊鄉">林邊鄉</option>
+    <option value="南州鄉">南州鄉</option>
+    <option value="佳冬鄉">佳冬鄉</option>
+    <option value="琉球鄉">琉球鄉</option>
+    <option value="車城鄉">車城鄉</option>
+    <option value="滿州鄉">滿州鄉</option>
+    <option value="枋山鄉">枋山鄉</option>
+    <option value="三地門鄉">三地門鄉</option>
+    <option value="霧臺鄉">霧臺鄉</option>
+    <option value="瑪家鄉">瑪家鄉</option>
+    <option value="泰武鄉">泰武鄉</option>
+    <option value="來義鄉">來義鄉</option>
+    <option value="春日鄉">春日鄉</option>
+    <option value="獅子鄉">獅子鄉</option>
+    <option value="牡丹鄉">牡丹鄉</option>
+    <option value="其他">其他</option>
+    
+  </select>
+  <input
+    type="text"
+    id="case-address"
+    name="case_address"
+    placeholder="請輸入詳細地址"
+  />
+</div>
 
-          <!-- 地號 -->
-          <label for="land-number">地號：</label>
+          <!-- 案件地號 -->
+          <label for="land-number">案件地號：</label>
           <input
             type="text"
             id="land-number"
             name="land_number"
-            placeholder="請輸入地號"
+            placeholder="請輸入案件地號"
           />
 
           <!-- 主旨 -->
-          <label for="subject">主旨：</label>
+          <label for="subject"><span class="required">*</span>主旨：</label>
           <input
             type="text"
             id="subject"
             name="subject"
             placeholder="請輸入信件主旨"
-            required
+            
           />
 
           <!-- 意見內容 -->
-          <label for="content">意見內容：</label>
+          <label for="content"><span class="required">*</span>意見內容：</label>
+          <span class="content-note">為避免送出失敗造成「意見內容」遺失，請先備份「意見內容」<br>
+          (意見內容可填入最多900字，若超過請改用上傳附件的方式。)</span>
           <textarea
             id="content"
             name="content"
             rows="6"
-            placeholder="請輸入您的意見內容"
-            required
+            placeholder="請輸入意見內容"
+           
           ></textarea>
 
-          <!-- 附件上傳 -->
-          <label for="attachment">附件：</label>
-          <input type="file" id="attachment" name="attachment" />
+<!-- 附件上傳說明 -->
+<p class="file-note">附件檔案格式限制：gif, jpg, jpeg, png, doc, docx, xls, xlsx, ppt, txt, pdf, odt, ods, odp, odg, avi, mp4, wav, wma, wmv, mp3，檔案容量不得超過50MB</p>
 
-          <!-- 提交按鈕 -->
-          <button type="submit" class="submit-btn">送出</button>
+<!-- 附件上傳容器 -->
+<div class="file-upload-container">
+    <label for="attachment1">附件 1：</label>
+    <input type="file" id="attachment1" name="attachments[]" 
+      accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.ppt,.txt,.pdf,.odt,.ods,.odp,.odg,.avi,.mp4,.wav,.wma,.wmv,.mp3" />
+
+    <label for="attachment2">附件 2：</label>
+    <input type="file" id="attachment2" name="attachments[]" 
+      accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.ppt,.txt,.pdf,.odt,.ods,.odp,.odg,.avi,.mp4,.wav,.wma,.wmv,.mp3" />
+
+    <label for="attachment3">附件 3：</label>
+    <input type="file" id="attachment3" name="attachments[]" 
+      accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.ppt,.txt,.pdf,.odt,.ods,.odp,.odg,.avi,.mp4,.wav,.wma,.wmv,.mp3" />
+</div>
+
+<!-- 提交按鈕 -->
+<button type="submit" class="submit-btn">送出</button>
+
         </form>
       </section>
     </main>
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  console.log("JS 加載成功"); // 測試 JavaScript 是否正確運行
+
+  // 取得 LocalStorage 內的已驗證 Email，並帶入欄位
+  const verifiedEmail = localStorage.getItem("verifiedEmail");
+  if (verifiedEmail) {
+    document.getElementById("email-display").textContent = verifiedEmail;
+    document.getElementById("email").value = verifiedEmail;
+  } else {
+    document.getElementById("email-display").textContent = "（未驗證的電子信箱）";
+  }
+
+  // 取得表單與標題
+  const form = document.querySelector(".compose-form");
+  const formTitle = document.querySelector(".content h2"); // "請填寫以下資訊"
+  const countdownElement = document.getElementById("countdown-timer");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // 阻止表單提交
+    console.log("提交被攔截"); // 測試是否攔截提交
+
+    let isValid = true; // 表單驗證狀態
+
+    // **移除所有舊的錯誤訊息**
+    document.querySelectorAll(".error-message").forEach(el => el.remove());
+
+    // **檢查所有 "標示*" 的必填欄位（input & textarea）**
+    form.querySelectorAll("label .required").forEach(span => {
+      const input = span.parentElement.nextElementSibling; // 取得對應的輸入欄位
+
+      if ((input.tagName === "INPUT" || input.tagName === "TEXTAREA") && !input.value.trim()) { // 檢查空值
+        isValid = false;
+
+        // 建立錯誤訊息
+        let errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.style.color = "#d32f2f"; 
+        errorMessage.style.fontSize = "0.9rem";
+        errorMessage.style.marginTop = "3px";
+
+        // 修正錯誤訊息，去掉 `*` 和 `:`
+        let labelText = span.parentElement.innerText
+          .replace(/[*:：]/g, '')  
+          .split("\n")[0]          
+          .trim();
+
+        errorMessage.innerText = `請填寫 ${labelText}！`;
+
+        // 插入錯誤訊息
+        if (!input.nextElementSibling || !input.nextElementSibling.classList.contains("error-message")) {
+          input.after(errorMessage);
+        }
+      }
+    });
+
+    // **如果表單通過驗證，顯示成功訊息**
+    if (isValid) {
+      console.log("表單驗證成功，提交！");
+
+      // **隱藏表單與標題與倒數計時**
+      form.style.display = "none";
+      formTitle.style.display = "none";
+      countdownElement.style.display = "none"; // 隱藏倒數時間
+      // **隱藏提示文字**
+const formNote = document.querySelector(".form-note");
+if (formNote) {
+    formNote.style.display = "none"; // 隱藏提示訊息
+}
+
+      // **顯示成功訊息**
+      const successMessage = document.createElement("div");
+      successMessage.classList.add("success-message");
+      successMessage.innerHTML = `
+          <p class="align-left">您的信件已傳送成功。<br>待案件分派至負責單位後，系統將另行發送受理通知至您的電子郵件信箱，可供查詢案件進度及相關資訊。</p>
+          <p class="align-left">非常感謝您的來信，讓我們有機會為您服務。</p>
+          <p class="align-left">祝您順心、平安</p>
+          <p class="align-right"><strong>屏東縣政府 敬上</strong></p>
+      `;
+
+      // **插入成功訊息**
+      form.parentElement.appendChild(successMessage);
+
+      // **3 秒後跳回首頁**
+      setTimeout(() => {
+        alert("您的信件已送出，將返回首頁！");
+        window.location.href = "index.html";
+      }, 3000);
+    } else {
+      console.log("表單驗證失敗，請檢查！");
+    }
+  });
+
+  // 附件上傳大小限制（50MB）
+  document.querySelectorAll("input[type='file']").forEach(input => {
+    input.addEventListener("change", function () {
+      const maxSize = 50 * 1024 * 1024; // 50MB
+
+      if (this.files.length > 0 && this.files[0].size > maxSize) {
+        alert(`檔案 "${this.files[0].name}" 超過 50MB，請選擇較小的檔案！`);
+        this.value = ""; // 清空選擇的檔案
+      }
+    });
+  });
+
+  // 設定初始倒數時間（30 分鐘）
+  let timeRemaining = 30 * 60; // 轉換成秒
+  let countdownInterval;
+
+  function updateTimerDisplay() {
+    let minutes = Math.floor(timeRemaining / 60);
+    let seconds = timeRemaining % 60;
+    countdownElement.textContent = `填寫剩餘時間：${minutes}:${seconds.toString().padStart(2, "0")}`;
+  }
+
+  function startCountdown() {
+    countdownInterval = setInterval(() => {
+      timeRemaining--;
+
+      // 更新畫面顯示的時間
+      updateTimerDisplay();
+
+      // 剩 5 分鐘時跳出提醒
+      if (timeRemaining === 300) {
+        let extendTime = confirm("您的填寫時間即將到期，是否需要延長 10 分鐘？");
+        if (extendTime) {
+          timeRemaining += 600; // 延長 10 分鐘
+        }
+      }
+
+      // 時間到時停用表單
+      if (timeRemaining <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = "填寫時間已逾時，請重新整理頁面！";
+        form.querySelectorAll("input, textarea, button").forEach(el => el.disabled = true);
+        alert("填寫時間逾時，請重新整理頁面！");
+      }
+    }, 1000);
+  }
+
+  // 初始化倒數計時
+  updateTimerDisplay();
+  startCountdown();
+});
+
+
+
+</script>
+
+
   </body>
 </html>

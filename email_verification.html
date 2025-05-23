@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="scripts.js"></script>
   </head>
@@ -13,10 +13,7 @@
       <h1>信箱驗證</h1>
       <nav>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <!-- <li><a href="index.html">最新消息</a></li> -->
-          <li><a href="chart.html">統計圖表</a></li>
-          <li><a href="#">聯絡我們</a></li>
+          <li><a href="index.html">返回首頁</a></li>
         </ul>
       </nav>
     </header>
@@ -68,6 +65,16 @@
           </button>
         </form>
       </section>
+      <script>
+        document.getElementById("confirm-btn").addEventListener("click", function () {
+          const email = document.getElementById("email").value;
+          if (email) {
+            localStorage.setItem("verifiedEmail", email); // 存儲已驗證信箱
+            window.location.href = "compose_mail.html"; // 跳轉至撰寫信件頁面
+          }
+        });
+      </script>
+      
     </main>
   </body>
 </html>

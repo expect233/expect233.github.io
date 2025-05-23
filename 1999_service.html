@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陳情入口整合平台</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -16,10 +17,7 @@
       <h1>1999服務時間與費率說明</h1>
       <nav>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <!-- <li><a href="index.html">最新消息</a></li> -->
-          <li><a href="chart.html">統計圖表</a></li>
-          <li><a href="#">聯絡我們</a></li>
+          <li><a href="index.html">返回首頁</a></li>
         </ul>
       </nav>
     </header>
@@ -68,7 +66,7 @@
           <tbody>
             <tr>
               <td>中華電信、台灣大哥大、遠傳電信、亞太電信、台灣之星</td>
-              <td>6元/分鐘（0.1元/秒）</td>
+              <td>3.6元/分鐘（0.06元/秒）</td>
               <td>依所選之費率計算有所不同。</td>
             </tr>
           </tbody>
@@ -77,14 +75,11 @@
         <h3>公用電話費率</h3>
         <p>1分鐘/1元（依公用電話撥市話費率標準計收）。</p>
 
-        <h3>費率優惠措施</h3>
-        <p>
-          自112年1月1日起，撥打1999服務碼，通話前5分鐘由本府付費，採通話過程不中斷為原則，超過5分鐘部分，始由用戶付費。實施範圍：市話以及行動電話月租型用戶（唯預付卡以及公共電話不納入實施範圍）。
-        </p>
+       
       </section>
-      <h4>相關檔案</h4>
+<!--      <h4>相關檔案</h4>
 
-      <!-- 在新標籤中打開 PDF -->
+      #在新標籤中打開 PDF
       <a
         href="屏東縣政府 1999 話務服務作業要點.pdf"
         target="_blank"
@@ -95,6 +90,15 @@
       <a href="話務服務流程圖.pdf" target="_blank" class="attachment-btn">
         <i class="fas fa-download"></i> 話務服務流程圖
       </a>
+       -->
     </main>
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   </body>
 </html>

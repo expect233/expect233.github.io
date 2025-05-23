@@ -3,15 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>屏東縣政府1999統計圖表</title>
+    <title>屏東縣政府陳情入口整合平台</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
     <!-- 引入 Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
   </head>
   <body>
     <!-- 頁首 -->
     <header>
-      <h1>屏東縣政府1999統計圖表</h1>
+      <h1>屏東縣政府陳情案件統計</h1>
       <nav>
         <ul>
           <li><a href="index.html">返回首頁</a></li>
@@ -20,135 +22,288 @@
     </header>
 
     <main>
-      <section class="chart-container">
-        <div class="chart-wrapper">
-          <h2>案件類別統計</h2>
-          <canvas id="typeChart"></canvas>
-        </div>
+      <p class="statement-text" id="monthTitle">114年1月份</p>
+<section class="chart-container">
+  <div class="chart-selector">
+    <label for="monthSelect">選擇月份：</label>
+    <select id="monthSelect">
+      <!-- 月份選項將由 JavaScript 動態生成 -->
+    </select>
+  </div>
 
-        <div class="chart-wrapper">
-          <h2>案件來源統計</h2>
-          <canvas id="statusChart"></canvas>
-        </div>
+  <div id="typeChartWrapper" class="chart-wrapper">
+    <h2>案件類別統計</h2>
+    <canvas id="typeChart"></canvas>
+  </div>
 
-        <div class="chart-wrapper">
-          <h2>鄉鎮別統計</h2>
-          <canvas id="monthlyChart" width="400" height="1000"></canvas>
-        </div>
-      </section>
+  <div id="statusChartWrapper" class="chart-wrapper">
+    <h2>案件來源統計</h2>
+    <canvas id="statusChart"></canvas>
+  </div>
+
+  <div id="monthlyChartWrapper" class="chart-wrapper">
+    <h2>鄉鎮別統計</h2>
+    <canvas id="monthlyChart"></canvas>
+  </div>
+</section>
+
+      
     </main>
 
-    <script>
-      // 使用 fetch API 獲取 JSON 文件
-      document.addEventListener("DOMContentLoaded", function () {
-        fetch("chart_data.json")
-          .then((response) => response.json())
-          .then((data) => {
-            // 動態設置標題
-            document.querySelector("h1").textContent = data.title;
-          })
-          .catch((error) => console.error("Error fetching the JSON:", error));
+   <!-- 圖表相關 Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+  fetch("chart_data.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const monthSelect = document.getElementById("monthSelect");
+      const monthTitle = document.getElementById("monthTitle");
+
+      // 動態生成月份選項
+      const months = Object.keys(data);
+      months.forEach((month) => {
+        const option = document.createElement("option");
+        option.value = month;
+        option.textContent = month;
+        monthSelect.appendChild(option);
       });
 
-      // 載入圖表資料
-      async function loadChartData() {
-        try {
-          const response = await fetch("chart_data.json");
-          const data = await response.json();
-          createCharts(data);
-        } catch (error) {
-          console.error("載入圖表資料時發生錯誤:", error);
-        }
-      }
+      // 初始化圖表
+      let typeChart, statusChart, monthlyChart;
 
-      // 建立圖表
-      function createCharts(data) {
-        // 鄉鎮別
-        new Chart(document.getElementById("monthlyChart"), {
+      function updateCharts(selectedMonth) {
+        const monthData = data[selectedMonth];
+        monthTitle.textContent = selectedMonth;
+
+        // 更新案件類別統計圖表
+        if (typeChart) {
+          typeChart.destroy();
+        }
+        typeChart = new Chart(document.getElementById("typeChart"), {
+          type: "doughnut",
+          data: {
+            labels: monthData.types.labels,
+            datasets: [{
+              data: monthData.types.data,
+              backgroundColor: [
+                "#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e",
+                "#e6ab02", "#a6761d", "#666666", "#8da0cb", "#fc8d62",
+                "#ffd92f", "#a6d854", "#e78ac3"
+              ]
+            }]
+          },
+          options: {
+  responsive: true,
+  cutout: "82%",
+  maintainAspectRatio: false,
+  aspectRatio: 1.5, 
+
+  plugins: {
+    legend: {
+      position: "right",
+      position: window.innerWidth < 768 ? "bottom" : "right",
+      align: "start",
+      labels: {
+        usePointStyle: true,
+        boxWidth: 10,
+        padding: 30, 
+                  font: ctx => {
+  return {
+    size: ctx.chart.width < 480 ? 12: 22
+  };}
+                  
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                    const value = context.parsed;
+                    const percent = ((value / total) * 100).toFixed(1);
+                    return `${context.label}: ${value}件 (${percent}%)`;
+                  }
+                }
+              }
+            }
+          },
+          plugins: [{
+            id: "center-text",
+            beforeDraw: (chart) => {
+              const { width, height, ctx } = chart;
+              const centerX = chart.chartArea.left + chart.chartArea.width / 2;
+              const centerY = chart.chartArea.top + chart.chartArea.height / 2;
+
+              const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+              ctx.save();
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
+              ctx.fillStyle = "#333";
+
+              ctx.font = "bold 2rem Arial";
+              ctx.fillText(total, centerX, centerY - 12);
+              ctx.font = "1rem Arial";
+              ctx.fillText("總案件數", centerX, centerY + 14);
+              ctx.restore();
+            }
+          }]
+        });
+
+        // 更新案件來源統計圖表
+        if (statusChart) {
+          statusChart.destroy();
+        }
+        statusChart = new Chart(document.getElementById("statusChart"), {
           type: "bar",
           data: {
-            labels: data.monthly.labels,
-            datasets: [
-              {
-                label: "案件數量",
-                data: data.monthly.data,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgb(75, 192, 192)",
-                borderWidth: 1,
+            labels: monthData.status.labels,
+            datasets: [{
+              label: "案件數量",
+              data: monthData.status.data,
+              borderRadius: {
+                topRight: 10,
+                bottomRight: 10
               },
-            ],
+              backgroundColor: [
+                "#63b3ed", // 電話諮詢
+                "#7bdcb5", // 縣長信箱
+                "#f6ad55", // 書面陳情
+                "#f687b3"  // 鄉鎮有約
+              ]
+            }]
           },
           options: {
             indexAxis: "y",
             responsive: true,
+            layout: {
+              padding: {
+                right: 40 // 增加右側空間，防止數字被裁切
+              }
+            },
             plugins: {
-              title: {
-                display: false,
-                text: "",
-              },
+              legend: { display: false },
+              datalabels: {
+                anchor: "end",
+                align: "end",
+                clamp: true,
+                formatter: value => `${value}`,
+                color: "#333",
+                font: {
+                  weight: "bold",
+                  size: 15
+                }
+              }
             },
             scales: {
               x: {
                 beginAtZero: true,
+                grid: {
+                  borderDash: [5, 5],
+                  color: "#ccc"
+                }
               },
-            },
+              y: {
+                ticks: {
+                  color: "#333",
+                  font: {
+      size: window.innerWidth < 768 ? 12 : 20 
+    }
+                }
+              }
+            }
           },
+          plugins: [ChartDataLabels]
         });
 
-        // 案件類型圓餅圖
-        new Chart(document.getElementById("typeChart"), {
-          type: "pie",
-          data: {
-            labels: data.types.labels,
-            datasets: [
-              {
-                data: data.types.data,
-                backgroundColor: [
-                  "rgb(255, 99, 132)",
-                  "rgb(54, 162, 235)",
-                  "rgb(255, 205, 86)",
-                  "rgb(75, 192, 192)",
-                  "rgb(153, 102, 255)",
-                ],
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: "right",
-              },
-            },
-          },
+        // 更新鄉鎮別統計圖表
+        if (monthlyChart) {
+          monthlyChart.destroy();
+        }
+        const monthlyLabels = monthData.monthly.labels;
+        const monthlyData = monthData.monthly.data;
+
+        // 將資料根據數值排序，取得每個資料點的排序位置
+        const sortedData = [...monthlyData].sort((a, b) => a - b);
+        const backgroundColors = monthlyData.map(value => {
+          const rank = sortedData.indexOf(value);
+          const intensity = 100 + Math.floor((rank / (monthlyData.length - 1)) * 100); // 100 到 200
+          return `rgb(102, ${intensity}, 30)`; // 基於 #66a61e 的深綠色系
         });
 
-        // 案件來源長條圖
-        new Chart(document.getElementById("statusChart"), {
+        monthlyChart = new Chart(document.getElementById("monthlyChart"), {
           type: "bar",
           data: {
-            labels: data.status.labels,
-            datasets: [
-              {
-                label: "案件數量",
-                data: data.status.data,
-                backgroundColor: "rgb(75, 192, 192)",
-              },
-            ],
+            labels: monthlyLabels,
+            datasets: [{
+              label: "案件數量",
+              data: monthlyData,
+              backgroundColor: backgroundColors,
+              borderRadius: 8 // 圓角設計
+            }]
           },
           options: {
+            indexAxis: "y", // 水平柱狀圖
             responsive: true,
+            maintainAspectRatio: false, // 允許自定義高度
             plugins: {
-              legend: {
-                display: false,
-              },
+              legend: { display: false },
+              datalabels: {
+                anchor: "end",
+                align: "right",
+                formatter: value => `${value}`,
+                color: "#333",
+                font: {
+                  weight: "bold",
+                  size: 15
+                }
+              }
             },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  borderDash: [5, 5],
+                  color: "#ccc"
+                }
+              },
+              y: {
+                ticks: {
+                  color: "#333",
+                  
+                  autoSkip: false,
+                  font: {
+        size: 16
+      }
+                }
+              }
+            }
           },
+          plugins: [ChartDataLabels]
         });
       }
 
-      // 頁面載入時執行
-      document.addEventListener("DOMContentLoaded", loadChartData);
-    </script>
+      // 初始化顯示第一個月份的圖表
+      updateCharts(months[0]);
+
+      // 當選擇不同月份時，更新圖表
+      monthSelect.addEventListener("change", function () {
+        updateCharts(this.value);
+      });
+    })
+    .catch((error) => console.error("載入 JSON 錯誤:", error));
+});
+
+  </script>
+  
+    
+        <!-- 回到頂部按鈕 -->
+<button id="top-btn" onclick="scrollToTop()">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- 引入 Font Awesome 圖標庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   </body>
 </html>

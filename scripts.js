@@ -41,3 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+// 監聽滾動事件，控制按鈕顯示與隱藏
+window.addEventListener("scroll", function () {
+    let topButton = document.getElementById("top-btn");
+  
+    if (window.scrollY > 100) { 
+      topButton.classList.add("show"); // 顯示按鈕
+    } else {
+      topButton.classList.remove("show"); // 隱藏按鈕
+    }
+  });
+  
+  // 點擊按鈕後，平滑滾動回頂部
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  
